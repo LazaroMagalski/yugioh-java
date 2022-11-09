@@ -29,8 +29,8 @@ public class GameWindow extends Application implements GameListener {
 		grid.setVgap(20);
 		grid.setPadding(new Insets(25, 25, 25, 25));
 
-		DeckView deckJ1 = new DeckView(1);
-		DeckView deckJ3 = new DeckView(3);
+		HandView deckJ1 = new HandView(1);
+		DeckView deckJ3 = new DeckView(1);
 		DeckView deckJ5 = new DeckView(5);
 		ScrollPane sd1 = new ScrollPane();
 		ScrollPane sd3 = new ScrollPane();
@@ -54,7 +54,7 @@ public class GameWindow extends Application implements GameListener {
 
 		DeckView deckJ2 = new DeckView(2);
 		DeckView deckJ4 = new DeckView(4);
-		DeckView deckJ6 = new DeckView(6);
+		HandView deckJ6 = new HandView(2);
 		ScrollPane sd2 = new ScrollPane();
 		ScrollPane sd4 = new ScrollPane();
 		ScrollPane sd6 = new ScrollPane();

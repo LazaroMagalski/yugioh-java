@@ -8,6 +8,7 @@ public class Card {
 	private String imageId;
 	private int value;
 	private boolean faceUp;
+	private boolean hand;
 	private final PropertyChangeSupport pcs;
 
 	public Card(String anId, String anImageId, int val) {
@@ -15,9 +16,16 @@ public class Card {
 		imageId = anImageId;
 		value = val;
 		faceUp = true;
+		hand = true;
 		pcs = new PropertyChangeSupport(this);
 	}
 
+
+	public void summon(){
+		boolean old = hand;
+		hand = !hand;
+		pcs.firePropertyChange("summon", old, id);
+	}
 	public String getId() {
 		return id;
 	}

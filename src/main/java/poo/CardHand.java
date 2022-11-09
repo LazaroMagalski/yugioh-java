@@ -6,13 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class CardDeck {
-	public static final int NCARDS = 1;
+public class CardHand {
+	public static final int NCARDS = 5;
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
 
-	public CardDeck() {
+	public CardHand() {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
 		Random r = new Random();

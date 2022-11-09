@@ -7,6 +7,7 @@ public class Game {
 	private static Game game = new Game();
 	private int ptsJ1, ptsJ2;
 	private CardDeck deckJ1, deckJ2;
+	private CardHand handJ1, handJ2;
 	private int player;
 	private int jogadas;
 	private List<GameListener> observers;
@@ -20,6 +21,8 @@ public class Game {
 		ptsJ2 = 0;
 		deckJ1 = new CardDeck();
 		deckJ2 = new CardDeck();
+		handJ1 = new CardHand();
+		handJ2 = new CardHand();
 		player = 1;
 		jogadas = CardDeck.NCARDS;
 		observers = new LinkedList<>();
@@ -48,6 +51,18 @@ public class Game {
 		return deckJ2;
 	}
 
+	public CardHand getHandJ1() {
+		return handJ1;
+	}
+
+	public CardHand getHandJ2() {
+		return handJ2;
+	}
+
+
+	public void playHand(CardHand hand) {
+		hand.getSelectedCard().flip();
+	}
 	public void play(CardDeck deckAcionado) {
 		GameEvent gameEvent = null;
 		if (player == 3) {

@@ -9,7 +9,11 @@ poo\GameListener.class
 poo\ImageFactory.class
 poo\CardDeck.class
 poo\CardViewListener.class
+poo\HandView.class
+yugiohgame\App$1.class
 poo\PlacarView.class
 poo\CardViewEvent.class
+poo\CardHand.class
+yugiohgame\App.class
 poo\CardView.class
 poo\GameEvent.class
