@@ -27,6 +27,7 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 
 		for (Card card : cDeck.getCards()) {
 			CardView cv = new CardView(card);
+			card.flip();
 			cv.setCardViewObserver(this);
 			this.getChildren().add(cv);
 		}
