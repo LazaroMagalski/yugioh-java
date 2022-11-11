@@ -17,12 +17,12 @@ public class Game {
 	}
 
 	private Game() {
-		ptsJ1 = 0;
-		ptsJ2 = 0;
+		ptsJ1 = 8000;
+		ptsJ2 = 8000;
 		deckJ1 = new CardDeck();
 		deckJ2 = new CardDeck();
-		handJ1 = new CardHand();
-		handJ2 = new CardHand();
+		handJ1 = new CardHand(1);
+		handJ2 = new CardHand(2);
 		player = 1;
 		jogadas = CardDeck.NCARDS;
 		observers = new LinkedList<>();
@@ -61,7 +61,43 @@ public class Game {
 
 
 	public void playHand(CardHand hand) {
-		hand.getSelectedCard().flip();
+		GameEvent gameEvent = null;
+		if (player == 3) {
+			gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.MUSTCLEAN, "");
+			for (var observer : observers) {
+				observer.notify(gameEvent);
+			}
+			return;
+		}
+		if (hand == handJ1){
+			if (player != 1){
+				gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "2");
+				for (var observer : observers) {
+					observer.notify(gameEvent);
+				}
+			}else {
+				nextPlayer();
+			}
+		} else if (hand == handJ2) {
+			if (player != 2) {
+				gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "2");
+				for (var observer : observers) {
+					observer.notify(gameEvent);
+				}
+			} else {
+				// Verifica quem ganhou a rodada
+				if (handJ1.getSelectedCard().getValue() > handJ2.getSelectedCard().getValue()) {
+					ptsJ2 -= handJ1.getSelectedCard().getValue() - handJ2.getSelectedCard().getValue();
+				} else if (handJ1.getSelectedCard().getValue() < handJ2.getSelectedCard().getValue()) {
+					ptsJ1 -= handJ2.getSelectedCard().getValue() - handJ1.getSelectedCard().getValue();
+				}
+				for (var observer : observers) {
+					observer.notify(gameEvent);
+				}
+				// Próximo jogador
+				nextPlayer();
+			}
+		}
 	}
 	public void play(CardDeck deckAcionado) {
 		GameEvent gameEvent = null;

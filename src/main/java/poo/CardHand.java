@@ -1,7 +1,6 @@
 package poo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class CardHand {
@@ -20,27 +18,29 @@ public class CardHand {
 	private Card selected;
 	private List<GameListener> observers;
 
-	public CardHand() {
+	public CardHand(int nroJogador) {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
-		Random r = new Random();
-		String caminhoAtual = Paths.get("D:\\OneDrive - PUCRS - BR\\Faculdade\\POO\\yugioh-java\\src\\main\\resources\\imagens\\KaibaDeck.csv").toAbsolutePath().toString();
+		String caminhoAtual = "";
+		if (nroJogador == 1){
+			caminhoAtual = Paths.get("src\\main\\resources\\baralhos\\KaibaDeck.csv").toAbsolutePath().toString();
+		}else{
+			caminhoAtual = Paths.get("src\\main\\resources\\baralhos\\YugiDeck.csv").toAbsolutePath().toString();
+		}
         Path caminho = Paths.get(caminhoAtual);
 		try (Scanner sc = new Scanner(Files.newBufferedReader(caminho, Charset.defaultCharset()))) {
+			String lineHeader = sc.nextLine();
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-				System.out.print(line);
+				String[] elements;
+				elements = line.split(",");
+				Card c = new Card(elements[0],elements[0],Integer.parseInt(elements[2]));
+				c.flip();
+				cartas.add(c);
             }
         } catch (IOException x) {
             System.err.format("Erro de E/S: %s%n", x);
         }
-		
-		for (int i = 0; i < NCARDS; i++) {
-			int n = r.nextInt(10) + 1;
-			Card c = new Card("C" + n, "img" + n, n);
-			c.flip();
-			cartas.add(c);
-		}
 		observers = new LinkedList<>();
 	}
 
