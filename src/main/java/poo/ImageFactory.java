@@ -43,7 +43,7 @@ public class ImageFactory {
 		case "imgBck":
 			return ("/imagens/back_yugi.jpg");
 		default:
-			throw new IllegalArgumentException("Invalid image Id");
+			return ("/imagens/"+imgId+".jpg");
 		}
 	}
 
