@@ -1,46 +1,23 @@
 package poo;
 
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CardHand {
 	public static final int NCARDS = 5;
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
-
+	private CardBaralho baralho;
+	
 	public CardHand(int nroJogador) {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
 		String caminhoAtual = "";
-		if (nroJogador == 1){
-			caminhoAtual = Paths.get("src\\main\\resources\\baralhos\\KaibaDeck.csv").toAbsolutePath().toString();
-		}else{
-			caminhoAtual = Paths.get("src\\main\\resources\\baralhos\\YugiDeck.csv").toAbsolutePath().toString();
-		}
-        Path caminho = Paths.get(caminhoAtual);
-		try (Scanner sc = new Scanner(Files.newBufferedReader(caminho, Charset.defaultCharset()))) {
-			String lineHeader = sc.nextLine();
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-				String[] elements;
-				elements = line.split(",");
-				Card c = new Card(elements[0],elements[0],Integer.parseInt(elements[2]));
-				c.flip();
-				cartas.add(c);
-            }
-        } catch (IOException x) {
-            System.err.format("Erro de E/S: %s%n", x);
-        }
+		
 		observers = new LinkedList<>();
 	}
 
@@ -51,7 +28,13 @@ public class CardHand {
 	public int getNumberOfCards() {
 		return cartas.size();
 	}
-
+	public void addCardHand(CardBaralho baralho, int nCards) {
+		for (int i = 0; i < nCards; i++) {
+			Card c = baralho.drawCard();
+			c.flip();
+			cartas.add(c);
+		}
+	}
 	public void removeSel() {
 		if (selected == null) {
 			return;

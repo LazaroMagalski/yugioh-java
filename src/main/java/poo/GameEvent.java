@@ -6,11 +6,11 @@ public class GameEvent extends EventObject {
 	private static final long serialVersionUID = 2066588332276925470L;
 
 	public enum Target {
-		DECK, GWIN
+		DECK, GWIN, BARALHO
 	};
 
 	public enum Action {
-		INVPLAY, MUSTCLEAN, ENDGAME, REMOVESEL
+		INVPLAY, MUSTCLEAN, ENDGAME, REMOVESEL, DRAWCARD
 	};
 
 	private Target target;

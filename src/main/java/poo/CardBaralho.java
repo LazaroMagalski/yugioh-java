@@ -11,15 +11,16 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class CardBaralho {
 	public static final int NCARDS = 5;
-	private List<Card> cartas;
+	private Stack<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
 
 	public CardBaralho(int nroJogador) {
-		cartas = new ArrayList<>(NCARDS);
+		cartas = new Stack<Card>();
 		selected = null;
 
 		String caminhoAtual = "";
@@ -37,11 +38,12 @@ public class CardBaralho {
 				String[] elements;
 				elements = line.split(",");
 				Card c = new Card(elements[0],elements[0],Integer.parseInt(elements[2]));
-				cartas.add(c);
+				cartas.push(c);
             }
         } catch (IOException x) {
             System.err.format("Erro de E/S: %s%n", x);
         }
+		Collections.shuffle(cartas);
 		observers = new LinkedList<>();
 	}
 
@@ -72,9 +74,12 @@ public class CardBaralho {
 	public Card getSelectedCard() {
 		return selected;
 	}
-
+	public Card drawCard(){
+		return cartas.pop();
+	}
 	public void addGameListener(GameListener listener) {
 		observers.add(listener);
 	}
+
 
 }

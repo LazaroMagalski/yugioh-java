@@ -26,6 +26,8 @@ public class Game {
 		handJ2 = new CardHand(2);
 		baralhoJ1 = new CardBaralho(1);
 		baralhoJ2 = new CardBaralho(2);
+		handJ1.addCardHand(baralhoJ1, 5);
+		handJ2.addCardHand(baralhoJ2, 5);
 		player = 1;
 		jogadas = CardDeck.NCARDS;
 		observers = new LinkedList<>();
@@ -109,6 +111,8 @@ public class Game {
 			}
 		}
 	}
+
+
 	public void play(CardDeck deckAcionado) {
 		GameEvent gameEvent = null;
 		if (player == 3) {
@@ -172,6 +176,16 @@ public class Game {
 		nextPlayer();
 	}
 	
+	public void addHand(CardBaralho c, int nroJogador) {
+		GameEvent gameEvent = null;
+		if (nroJogador == 1) {
+			CardHand hand = getHandJ1();
+			hand.addCardHand(c, 1);
+		}
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
+	}
 	public void addGameListener(GameListener listener) {
 		observers.add(listener);
 	}

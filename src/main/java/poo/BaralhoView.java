@@ -13,6 +13,7 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 	private Card selectedCard;
 	private TextField numberCards;
 
+
 	public BaralhoView(int nroJog) {
 		super(4);
 		this.setAlignment(Pos.CENTER);
@@ -38,6 +39,7 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 		this.getChildren().add(topo);
 		this.getChildren().add(new Label("Cards Restantes: "));
 		this.getChildren().add(numberCards);
+
 	}
 
 	private void removeSel() {
@@ -49,6 +51,13 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 				selectedCard = null;
 			}
 		}
+	}
+	private CardBaralho getDeck(){
+		return cDeck;
+	}
+
+	private int getJogador(){
+		return jogador;
 	}
 
 	@Override
@@ -64,8 +73,8 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 	@Override
 	public void handle(CardViewEvent event) {
 		CardView cv = event.getCardView();
-		selectedCard = cv.getCard();
-		cDeck.setSelectedCard(selectedCard);
-		// Game.getInstance().play(cDeck);
+		CardBaralho baralho = getDeck();
+		int j = getJogador();
+		Game.getInstance().addHand(baralho, j);
 	}
 }
