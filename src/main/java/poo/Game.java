@@ -8,6 +8,7 @@ public class Game {
 	private int ptsJ1, ptsJ2;
 	private CardDeck deckJ1, deckJ2;
 	private CardHand handJ1, handJ2;
+	private CardBaralho baralhoJ1, baralhoJ2;
 	private int player;
 	private int jogadas;
 	private List<GameListener> observers;
@@ -23,6 +24,8 @@ public class Game {
 		deckJ2 = new CardDeck();
 		handJ1 = new CardHand(1);
 		handJ2 = new CardHand(2);
+		baralhoJ1 = new CardBaralho(1);
+		baralhoJ2 = new CardBaralho(2);
 		player = 1;
 		jogadas = CardDeck.NCARDS;
 		observers = new LinkedList<>();
@@ -57,6 +60,13 @@ public class Game {
 
 	public CardHand getHandJ2() {
 		return handJ2;
+	}
+	public CardBaralho getBaralhoJ1() {
+		return baralhoJ1;
+	}
+
+	public CardBaralho getBaralhoJ2() {
+		return baralhoJ2;
 	}
 
 

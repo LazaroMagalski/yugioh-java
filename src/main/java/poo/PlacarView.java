@@ -23,9 +23,9 @@ public class PlacarView extends GridPane implements GameListener {
 		ptsJ1.setText("" + Game.getInstance().getPtsJ1());
 		ptsJ2.setText("" + Game.getInstance().getPtsJ2());
 
-		this.add(new Label("Jogador 1:"), 0, 0);
+		this.add(new Label("LP Jogador 1:"), 0, 0);
 		this.add(ptsJ1, 1, 0);
-		this.add(new Label("Jogador 2:"), 0, 1);
+		this.add(new Label("LP Jogador 2:"), 0, 1);
 		this.add(ptsJ2, 1, 1);
 	}
 

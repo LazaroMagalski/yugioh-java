@@ -30,11 +30,13 @@ public class GameWindow extends Application implements GameListener {
 		grid.setPadding(new Insets(25, 25, 25, 25));
 
 		HandView deckJ1 = new HandView(1);
+		BaralhoView baralhoJ1 = new BaralhoView(1);
 		DeckView deckJ3 = new DeckView(1);
 		DeckView deckJ5 = new DeckView(5);
 		ScrollPane sd1 = new ScrollPane();
 		ScrollPane sd3 = new ScrollPane();
 		ScrollPane sd5 = new ScrollPane();
+		ScrollPane sd8 = new ScrollPane();
 		sd1.setPrefSize(600, 128);
 		sd1.setContent(deckJ1);
 		grid.add(sd1, 1, 0);
@@ -44,6 +46,9 @@ public class GameWindow extends Application implements GameListener {
 		sd5.setPrefSize(600, 128);
 		sd5.setContent(deckJ5);
 		grid.add(sd5, 1, 2);
+		sd8.setPrefSize(128, 128);
+		sd8.setContent(baralhoJ1);
+		grid.add(sd8, 0, 0);
 
 		PlacarView placar = new PlacarView();
 		grid.add(placar, 0, 3);
@@ -55,9 +60,11 @@ public class GameWindow extends Application implements GameListener {
 		DeckView deckJ2 = new DeckView(2);
 		DeckView deckJ4 = new DeckView(4);
 		HandView deckJ6 = new HandView(2);
+		BaralhoView baralhoJ2 = new BaralhoView(2);
 		ScrollPane sd2 = new ScrollPane();
 		ScrollPane sd4 = new ScrollPane();
 		ScrollPane sd6 = new ScrollPane();
+		ScrollPane sd9 = new ScrollPane();
 		sd2.setPrefSize(600, 128);
 		sd2.setContent(deckJ2);
 		grid.add(sd2, 1, 4);
@@ -67,6 +74,9 @@ public class GameWindow extends Application implements GameListener {
 		sd6.setPrefSize(600, 128);
 		sd6.setContent(deckJ6);
 		grid.add(sd6, 1, 6);
+		sd9.setPrefSize(128, 128);
+		sd9.setContent(baralhoJ2);
+		grid.add(sd9, 0, 6);
 
 		Scene scene = new Scene(grid);
 
