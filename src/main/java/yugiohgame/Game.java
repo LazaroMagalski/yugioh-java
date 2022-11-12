@@ -1,4 +1,4 @@
-package poo;
+package yugiohgame;
 
 import java.util.LinkedList;
 import java.util.List;

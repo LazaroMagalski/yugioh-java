@@ -1,16 +1,16 @@
-package poo;
+package yugiohgame;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
-public class HandView extends HBox implements CardViewListener, GameListener {
+public class DeckView extends HBox implements CardViewListener, GameListener {
 	private int jogador;
-	private CardHand cDeck;
+	private CardDeck cDeck;
 	private Card selectedCard;
 
-	public HandView(int nroJog) {
+	public DeckView(int nroJog) {
 		super(4);
 		this.setAlignment(Pos.CENTER);
 
@@ -19,15 +19,14 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 
 		cDeck = null;
 		if (jogador == 1) {
-			cDeck = Game.getInstance().getHandJ1();
+			cDeck = Game.getInstance().getDeckJ1();
 		} else {
-			cDeck = Game.getInstance().getHandJ2();
+			cDeck = Game.getInstance().getDeckJ2();
 		}
 		cDeck.addGameListener(this);
 
 		for (Card card : cDeck.getCards()) {
 			CardView cv = new CardView(card);
-			card.flip();
 			cv.setCardViewObserver(this);
 			this.getChildren().add(cv);
 		}
@@ -59,6 +58,6 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		CardView cv = event.getCardView();
 		selectedCard = cv.getCard();
 		cDeck.setSelectedCard(selectedCard);
-		Game.getInstance().playHand(cDeck);
+		Game.getInstance().play(cDeck);
 	}
 }

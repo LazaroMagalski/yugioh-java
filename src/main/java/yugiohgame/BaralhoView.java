@@ -1,16 +1,20 @@
-package poo;
+package yugiohgame;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-public class DeckView extends HBox implements CardViewListener, GameListener {
+public class BaralhoView extends HBox implements CardViewListener, GameListener {
 	private int jogador;
-	private CardDeck cDeck;
+	private CardBaralho cDeck;
 	private Card selectedCard;
+	private TextField numberCards;
 
-	public DeckView(int nroJog) {
+
+	public BaralhoView(int nroJog) {
 		super(4);
 		this.setAlignment(Pos.CENTER);
 
@@ -19,17 +23,23 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 
 		cDeck = null;
 		if (jogador == 1) {
-			cDeck = Game.getInstance().getDeckJ1();
+			cDeck = Game.getInstance().getBaralhoJ1();
 		} else {
-			cDeck = Game.getInstance().getDeckJ2();
+			cDeck = Game.getInstance().getBaralhoJ2();
 		}
 		cDeck.addGameListener(this);
-
+		CardView topo = null;
 		for (Card card : cDeck.getCards()) {
 			CardView cv = new CardView(card);
 			cv.setCardViewObserver(this);
-			this.getChildren().add(cv);
+			topo = new CardView(card);
 		}
+		numberCards = new TextField();
+		numberCards.setText("" + cDeck.getNumberOfCards());
+		this.getChildren().add(topo);
+		this.getChildren().add(new Label("Cards Restantes: "));
+		this.getChildren().add(numberCards);
+
 	}
 
 	private void removeSel() {
@@ -41,6 +51,13 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 				selectedCard = null;
 			}
 		}
+	}
+	private CardBaralho getDeck(){
+		return cDeck;
+	}
+
+	private int getJogador(){
+		return jogador;
 	}
 
 	@Override
@@ -56,8 +73,8 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 	@Override
 	public void handle(CardViewEvent event) {
 		CardView cv = event.getCardView();
-		selectedCard = cv.getCard();
-		cDeck.setSelectedCard(selectedCard);
-		Game.getInstance().play(cDeck);
+		CardBaralho baralho = getDeck();
+		int j = getJogador();
+		Game.getInstance().addHand(baralho, j);
 	}
 }

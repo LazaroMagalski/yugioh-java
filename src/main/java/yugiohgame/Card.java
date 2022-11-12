@@ -1,4 +1,4 @@
-package poo;
+package yugiohgame;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

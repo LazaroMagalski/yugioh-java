@@ -1,27 +1,23 @@
-package poo;
+package yugiohgame;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
-public class CardDeck {
-	public static final int NCARDS = 1;
+public class CardHand {
+	public static final int NCARDS = 5;
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
-
-	public CardDeck() {
+	private CardBaralho baralho;
+	
+	public CardHand(int nroJogador) {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
-		Random r = new Random();
-		for (int i = 0; i < NCARDS; i++) {
-			int n = r.nextInt(10) + 1;
-			Card c = new Card("C" + n, "img" + n, n);
-			c.flip();
-			cartas.add(c);
-		}
+		String caminhoAtual = "";
+		
 		observers = new LinkedList<>();
 	}
 
@@ -32,7 +28,13 @@ public class CardDeck {
 	public int getNumberOfCards() {
 		return cartas.size();
 	}
-
+	public void addCardHand(CardBaralho baralho, int nCards) {
+		for (int i = 0; i < nCards; i++) {
+			Card c = baralho.drawCard();
+			c.flip();
+			cartas.add(c);
+		}
+	}
 	public void removeSel() {
 		if (selected == null) {
 			return;

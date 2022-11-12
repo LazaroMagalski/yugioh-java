@@ -1,4 +1,4 @@
-package poo;
+package yugiohgame;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

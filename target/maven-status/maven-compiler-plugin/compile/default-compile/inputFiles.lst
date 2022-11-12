@@ -1,17 +1,17 @@
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\ImageFactory.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\App.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\CardDeck.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\GameWindow.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\CardHand.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\PlacarView.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\Card.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\GameEvent.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\CardViewListener.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\CardViewEvent.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\CardBaralho.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\Game.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\DeckView.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\GameListener.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\HandView.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\CardView.java
-D:\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\poo\BaralhoView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\PlacarView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\CardView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\ImageFactory.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Game.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Card.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\GameWindow.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\DeckView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\CardViewListener.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\CardBaralho.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\BaralhoView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\CardViewEvent.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\App.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\GameEvent.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\GameListener.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\HandView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\CardDeck.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\CardHand.java

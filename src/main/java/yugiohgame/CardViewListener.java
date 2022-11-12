@@ -1,4 +1,4 @@
-package poo;
+package yugiohgame;
 
 import javafx.event.EventHandler;
 

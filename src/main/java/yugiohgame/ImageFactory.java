@@ -1,4 +1,4 @@
-package poo;
+package yugiohgame;
 
 import java.util.HashMap;
 import java.util.Map;
