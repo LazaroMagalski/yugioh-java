@@ -73,6 +73,7 @@ public class Game {
 
 
 	public void playHand(CardHand hand) {
+		System.out.println(hand.getNumberOfCards());
 		GameEvent gameEvent = null;
 		if (player == 3) {
 			gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.MUSTCLEAN, "");
@@ -176,11 +177,15 @@ public class Game {
 		nextPlayer();
 	}
 	
-	public void addHand(CardBaralho c, int nroJogador) {
-		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "");
-		for (var observer : observers) {
-			observer.notify(gameEvent);
-		}
+	public void addHand(CardBaralho c) {
+		System.out.println(c.getNumberOfCards());
+		if (c == baralhoJ1) handJ1.addCardHand(c, 1);
+		if (c == baralhoJ2) handJ2.addCardHand(c, 1);
+		
+		// GameEvent gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "");
+		// for (var observer : observers) {
+		// 	observer.notify(gameEvent);
+		// }
 	}
 	public void addGameListener(GameListener listener) {
 		observers.add(listener);

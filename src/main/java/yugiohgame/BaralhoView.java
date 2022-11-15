@@ -32,7 +32,7 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 		for (Card card : cDeck.getCards()) {
 			CardView cv = new CardView(card);
 			cv.setCardViewObserver(this);
-			topo = new CardView(card);
+			topo = cv;
 		}
 		numberCards = new TextField();
 		numberCards.setText("" + cDeck.getNumberOfCards());
@@ -72,16 +72,7 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 
 	@Override
 	public void handle(CardViewEvent event) {
-		CardView cv = event.getCardView();
 		CardBaralho baralho = getDeck();
-		int j = getJogador();
-		CardHand hand;
-		if (j == 1){
-			hand = Game.getInstance().getHandJ1();
-		} else{
-			hand = Game.getInstance().getHandJ2();
-		}
-		System.out.println(j);
-		Game.getInstance().addHand(baralho, j);
+		Game.getInstance().addHand(baralho);
 	}
 }
