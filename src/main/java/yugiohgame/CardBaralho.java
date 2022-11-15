@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class CardBaralho {
-	public static final int NCARDS = 5;
+	public static final int NCARDS = 7;
 	private Stack<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;

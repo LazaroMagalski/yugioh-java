@@ -62,7 +62,7 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 
 	@Override
 	public void notify(GameEvent event) {
-		if (event.getTarget() != GameEvent.Target.DECK) {
+		if (event.getTarget() != GameEvent.Target.BARALHO) {
 			return;
 		}
 		if (event.getAction() == GameEvent.Action.REMOVESEL) {
@@ -75,6 +75,13 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 		CardView cv = event.getCardView();
 		CardBaralho baralho = getDeck();
 		int j = getJogador();
+		CardHand hand;
+		if (j == 1){
+			hand = Game.getInstance().getHandJ1();
+		} else{
+			hand = Game.getInstance().getHandJ2();
+		}
+		System.out.println(j);
 		Game.getInstance().addHand(baralho, j);
 	}
 }

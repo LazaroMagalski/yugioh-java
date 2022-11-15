@@ -6,7 +6,7 @@ public class GameEvent extends EventObject {
 	private static final long serialVersionUID = 2066588332276925470L;
 
 	public enum Target {
-		DECK, GWIN, BARALHO
+		DECK, GWIN, BARALHO, HAND
 	};
 
 	public enum Action {

@@ -16,7 +16,6 @@ public class CardHand {
 	public CardHand(int nroJogador) {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
-		String caminhoAtual = "";
 		
 		observers = new LinkedList<>();
 	}
@@ -34,6 +33,11 @@ public class CardHand {
 			c.flip();
 			cartas.add(c);
 		}
+	}
+
+	public void addHand(Card card) {
+		card.flip();
+		cartas.add(card);
 	}
 	public void removeSel() {
 		if (selected == null) {

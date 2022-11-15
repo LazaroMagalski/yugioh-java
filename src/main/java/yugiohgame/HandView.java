@@ -44,13 +44,31 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		}
 	}
 
+	private void drawCard() {
+		CardHand hand = null;
+		CardBaralho deck = null;
+		if (jogador == 1) {
+			hand = Game.getInstance().getHandJ1();
+			deck = Game.getInstance().getBaralhoJ1();
+
+		} else {
+			hand = Game.getInstance().getHandJ2();
+			deck = Game.getInstance().getBaralhoJ2();
+		}
+		Card c = deck.drawCard();
+		hand.addHand(c);
+		CardView cv = new CardView(c);
+		this.getChildren().add(cv);
+			
+	}
+
 	@Override
 	public void notify(GameEvent event) {
-		if (event.getTarget() != GameEvent.Target.DECK) {
+		if (event.getTarget() != GameEvent.Target.HAND) {
 			return;
 		}
-		if (event.getAction() == GameEvent.Action.REMOVESEL) {
-			removeSel();
+		if (event.getAction() == GameEvent.Action.DRAWCARD) {
+			drawCard();
 		}
 	}
 
@@ -58,6 +76,8 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 	public void handle(CardViewEvent event) {
 		CardView cv = event.getCardView();
 		selectedCard = cv.getCard();
+		System.out.println(selectedCard.getValue());
+		drawCard();
 		cDeck.setSelectedCard(selectedCard);
 		Game.getInstance().playHand(cDeck);
 	}

@@ -177,11 +177,7 @@ public class Game {
 	}
 	
 	public void addHand(CardBaralho c, int nroJogador) {
-		GameEvent gameEvent = null;
-		if (nroJogador == 1) {
-			CardHand hand = getHandJ1();
-			hand.addCardHand(c, 1);
-		}
+		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "");
 		for (var observer : observers) {
 			observer.notify(gameEvent);
 		}
