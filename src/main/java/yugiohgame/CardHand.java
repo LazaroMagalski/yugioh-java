@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CardHand {
-	public static final int NCARDS = 5;
+	public static final int NCARDS = 7;
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;

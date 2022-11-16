@@ -182,10 +182,12 @@ public class Game {
 		if (c == baralhoJ1) handJ1.addCardHand(c, 1);
 		if (c == baralhoJ2) handJ2.addCardHand(c, 1);
 		
-		// GameEvent gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "");
-		// for (var observer : observers) {
-		// 	observer.notify(gameEvent);
-		// }
+		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "");
+		System.out.println(gameEvent);
+		for (var observer : observers) {
+			System.out.println(observer+"\n");
+			observer.notify(gameEvent);
+		}
 	}
 	public void addGameListener(GameListener listener) {
 		observers.add(listener);

@@ -28,17 +28,8 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 			cDeck = Game.getInstance().getBaralhoJ2();
 		}
 		cDeck.addGameListener(this);
-		CardView topo = null;
-		for (Card card : cDeck.getCards()) {
-			CardView cv = new CardView(card);
-			cv.setCardViewObserver(this);
-			topo = cv;
-		}
-		numberCards = new TextField();
-		numberCards.setText("" + cDeck.getNumberOfCards());
-		this.getChildren().add(topo);
-		this.getChildren().add(new Label("Cards Restantes: "));
-		this.getChildren().add(numberCards);
+		
+		getTopo();
 
 	}
 
@@ -55,7 +46,21 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 	private CardBaralho getDeck(){
 		return cDeck;
 	}
+	private void getTopo(){
+		this.getChildren().clear();
+		CardView topo = null;
+		for (Card card : cDeck.getCards()) {
+			CardView cv = new CardView(card);
+			cv.setCardViewObserver(this);
+			topo = cv;
+		}
+		numberCards = new TextField();
+		numberCards.setText("" + cDeck.getNumberOfCards());
+		this.getChildren().add(topo);
+		this.getChildren().add(new Label("Cards Restantes: "));
+		this.getChildren().add(numberCards);
 
+	}
 	private int getJogador(){
 		return jogador;
 	}
@@ -74,5 +79,6 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 	public void handle(CardViewEvent event) {
 		CardBaralho baralho = getDeck();
 		Game.getInstance().addHand(baralho);
+		getTopo();
 	}
 }

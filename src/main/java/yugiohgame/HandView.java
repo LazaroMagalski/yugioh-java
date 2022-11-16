@@ -1,5 +1,7 @@
 package yugiohgame;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -13,7 +15,7 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 	public HandView(int nroJog) {
 		super(4);
 		this.setAlignment(Pos.CENTER);
-
+		Game.getInstance().addGameListener(this);
 		jogador = nroJog;
 		selectedCard = null;
 
@@ -45,29 +47,25 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 	}
 
 	private void drawCard() {
-		CardHand hand = null;
-		CardBaralho deck = null;
-		if (jogador == 1) {
-			hand = Game.getInstance().getHandJ1();
-			deck = Game.getInstance().getBaralhoJ1();
-
-		} else {
-			hand = Game.getInstance().getHandJ2();
-			deck = Game.getInstance().getBaralhoJ2();
-		}
-		Card c = deck.drawCard();
-		hand.addHand(c);
-		CardView cv = new CardView(c);
+		int numberCards = cDeck.getNumberOfCards();
+		List<Card> hand = cDeck.getCards();
+		Card drawedCard = hand.get(numberCards-1);
+		CardView cv = new CardView(drawedCard);
+		drawedCard.flip();
+		cv.setCardViewObserver(this);
 		this.getChildren().add(cv);
+		
 			
 	}
 
 	@Override
 	public void notify(GameEvent event) {
 		if (event.getTarget() != GameEvent.Target.HAND) {
+			System.out.println("Não Entrou no notify");
 			return;
 		}
 		if (event.getAction() == GameEvent.Action.DRAWCARD) {
+			System.out.println("Entrou no notify");
 			drawCard();
 		}
 	}
