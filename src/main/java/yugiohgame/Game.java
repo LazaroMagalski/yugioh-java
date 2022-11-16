@@ -179,10 +179,24 @@ public class Game {
 	
 	public void addHand(CardBaralho c) {
 		System.out.println(c.getNumberOfCards());
-		if (c == baralhoJ1) handJ1.addCardHand(c, 1);
-		if (c == baralhoJ2) handJ2.addCardHand(c, 1);
+		GameEvent gameEvent = null;
+		if (c == baralhoJ1) {
+			if (handJ1.getNumberOfCards() < 7){
+				handJ1.addCardHand(c, 1);
+				gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "1");
+			}else{
+				return;
+			}
+		}
+		if (c == baralhoJ2) {
+			if (handJ2.getNumberOfCards() < 7){
+				handJ2.addCardHand(c, 1);
+				gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "2");
+			}else{
+				return;
+			}
+		}
 		
-		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "");
 		System.out.println(gameEvent);
 		for (var observer : observers) {
 			System.out.println(observer+"\n");

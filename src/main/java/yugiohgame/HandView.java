@@ -46,15 +46,18 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		}
 	}
 
-	private void drawCard() {
+	private void drawCard(String jogador) {
 		int numberCards = cDeck.getNumberOfCards();
-		List<Card> hand = cDeck.getCards();
-		Card drawedCard = hand.get(numberCards-1);
-		CardView cv = new CardView(drawedCard);
-		drawedCard.flip();
-		cv.setCardViewObserver(this);
-		this.getChildren().add(cv);
+		if (Integer.parseInt(jogador) == this.jogador){
 		
+			List<Card> hand = cDeck.getCards();
+
+			Card drawedCard = hand.get(numberCards-1);
+			CardView cv = new CardView(drawedCard);
+			drawedCard.flip();
+			cv.setCardViewObserver(this);
+			this.getChildren().add(cv);
+		}
 			
 	}
 
@@ -66,17 +69,17 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		}
 		if (event.getAction() == GameEvent.Action.DRAWCARD) {
 			System.out.println("Entrou no notify");
-			drawCard();
+			drawCard(event.getArg());
 		}
 	}
 
 	@Override
 	public void handle(CardViewEvent event) {
-		CardView cv = event.getCardView();
-		selectedCard = cv.getCard();
-		System.out.println(selectedCard.getValue());
-		drawCard();
-		cDeck.setSelectedCard(selectedCard);
-		Game.getInstance().playHand(cDeck);
+		// CardView cv = event.getCardView();
+		// selectedCard = cv.getCard();
+		// System.out.println(selectedCard.getValue());
+		// drawCard();
+		// cDeck.setSelectedCard(selectedCard);
+		// Game.getInstance().playHand(cDeck);
 	}
 }
