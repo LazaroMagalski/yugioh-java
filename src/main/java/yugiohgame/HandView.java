@@ -70,7 +70,6 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 	@Override
 	public void notify(GameEvent event) {
 		if (event == null) return;
-
 		if (event.getTarget() != GameEvent.Target.HAND) {
 			return;
 		}
