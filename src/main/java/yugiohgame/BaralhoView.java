@@ -46,6 +46,8 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 	private CardBaralho getDeck(){
 		return cDeck;
 	}
+
+
 	private void getTopo(){
 		this.getChildren().clear();
 		CardView topo = null;

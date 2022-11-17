@@ -4,24 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
-public class CardDeck {
+public class CardField {
 	public static final int NCARDS = 1;
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
 
-	public CardDeck() {
+	public CardField() {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
-		Random r = new Random();
-		for (int i = 0; i < NCARDS; i++) {
-			int n = r.nextInt(10) + 1;
-			Card c = new Card("C" + n, "img" + n, n);
-			c.flip();
-			cartas.add(c);
-		}
 		observers = new LinkedList<>();
 	}
 
@@ -52,6 +44,12 @@ public class CardDeck {
 	public Card getSelectedCard() {
 		return selected;
 	}
+
+
+	public void addCard(Card c) {
+		cartas.add(c);
+	}
+
 
 	public void addGameListener(GameListener listener) {
 		observers.add(listener);

@@ -61,25 +61,38 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 			
 	}
 
+
+	private int getJogador(){
+		return jogador;
+	}
+
+
 	@Override
 	public void notify(GameEvent event) {
+		if (event == null) return;
+
 		if (event.getTarget() != GameEvent.Target.HAND) {
-			System.out.println("Não Entrou no notify");
 			return;
 		}
 		if (event.getAction() == GameEvent.Action.DRAWCARD) {
-			System.out.println("Entrou no notify");
 			drawCard(event.getArg());
 		}
 	}
 
 	@Override
 	public void handle(CardViewEvent event) {
-		// CardView cv = event.getCardView();
-		// selectedCard = cv.getCard();
-		// System.out.println(selectedCard.getValue());
-		// drawCard();
-		// cDeck.setSelectedCard(selectedCard);
-		// Game.getInstance().playHand(cDeck);
+		CardView cv = event.getCardView();
+		int j = getJogador();
+		int numberCards = 0;
+
+		if(j == 1) numberCards = (Game.getInstance().getDeckJ1(FieldView.CardType.MONSTERCARD).getNumberOfCards());
+		if(j == 2) numberCards = (Game.getInstance().getDeckJ2(FieldView.CardType.MONSTERCARD).getNumberOfCards());
+
+		if (numberCards < 5) {
+			selectedCard = cv.getCard();
+			cDeck.setSelectedCard(selectedCard);
+			Game.getInstance().addField(selectedCard, j);
+			removeSel();
+		}
 	}
 }
