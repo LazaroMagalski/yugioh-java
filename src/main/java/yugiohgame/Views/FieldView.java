@@ -1,13 +1,22 @@
-package yugiohgame;
+package yugiohgame.Views;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import yugiohgame.Game;
+import yugiohgame.Cards.Card;
+import yugiohgame.Components.Field;
+import yugiohgame.Events.CardViewEvent;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Events.GameEvent.Action;
+import yugiohgame.Events.GameEvent.Target;
+import yugiohgame.Listeners.CardViewListener;
+import yugiohgame.Listeners.GameListener;
 
 public class FieldView extends HBox implements CardViewListener, GameListener {
 	private int jogador;
-	private CardField cDeck;
+	private Field cDeck;
 	private Card selectedCard;
 	private CardType cardType;
 

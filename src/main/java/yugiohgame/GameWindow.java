@@ -10,6 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
+import yugiohgame.Views.DeckView;
+import yugiohgame.Views.FieldView;
+import yugiohgame.Views.HandView;
+import yugiohgame.Views.PlacarView;
 
 public class GameWindow extends Application implements GameListener {
 
@@ -30,7 +36,7 @@ public class GameWindow extends Application implements GameListener {
 		grid.setPadding(new Insets(25, 25, 25, 25));
 
 		HandView handJ1 = new HandView(1);
-		BaralhoView baralhoJ1 = new BaralhoView(1);
+		DeckView baralhoJ1 = new DeckView(1);
 		FieldView fieldSpell1 = new FieldView(1,FieldView.CardType.SPELLCARD);
 		FieldView fieldMonster1 = new FieldView(1, FieldView.CardType.MONSTERCARD);
 
@@ -65,7 +71,7 @@ public class GameWindow extends Application implements GameListener {
 		FieldView fieldSpell2 = new FieldView(2, FieldView.CardType.SPELLCARD);
 		FieldView fieldMonster2 = new FieldView(2, FieldView.CardType.MONSTERCARD);
 		HandView handJ2 = new HandView(2);
-		BaralhoView baralhoJ2 = new BaralhoView(2);
+		DeckView baralhoJ2 = new DeckView(2);
 
 		ScrollPane sdSpell2 = new ScrollPane();
 		ScrollPane sdField2 = new ScrollPane();

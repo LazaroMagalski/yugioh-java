@@ -1,4 +1,4 @@
-package yugiohgame;
+package yugiohgame.Components;
 
 
 import java.io.IOException;
@@ -12,13 +12,18 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class CardBaralho {
+import yugiohgame.Cards.Card;
+import yugiohgame.Cards.MonsterCard;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
+
+public class Deck {
 	public static final int NCARDS = 7;
 	private Stack<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
 
-	public CardBaralho(int nroJogador) {
+	public Deck(int nroJogador) {
 		cartas = new Stack<Card>();
 		selected = null;
 
@@ -29,6 +34,7 @@ public class CardBaralho {
 		}else{
 			caminhoAtual = Paths.get("src\\main\\resources\\baralhos\\YugiDeck.csv").toAbsolutePath().toString();
 		}
+
         Path caminho = Paths.get(caminhoAtual);
 		try (Scanner sc = new Scanner(Files.newBufferedReader(caminho, Charset.defaultCharset()))) {
 			String lineHeader = sc.nextLine();
@@ -36,7 +42,13 @@ public class CardBaralho {
                 String line = sc.nextLine();
 				String[] elements;
 				elements = line.split(",");
-				Card c = new Card(elements[0],elements[0],Integer.parseInt(elements[2]));
+				
+				String cardName = elements[0];
+				int level = Integer.parseInt(elements[1]);
+				int atk = Integer.parseInt(elements[2]);
+				int def = Integer.parseInt(elements[3]);
+
+				Card c = new MonsterCard(cardName,cardName,level,atk,def);
 				cartas.push(c);
             }
         } catch (IOException x) {

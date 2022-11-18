@@ -1,17 +1,21 @@
-package yugiohgame;
+package yugiohgame.Components;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CardField {
+import yugiohgame.Cards.Card;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
+
+public class Field {
 	public static final int NCARDS = 1;
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
 
-	public CardField() {
+	public Field() {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
 		observers = new LinkedList<>();

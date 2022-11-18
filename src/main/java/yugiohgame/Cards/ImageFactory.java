@@ -1,4 +1,4 @@
-package yugiohgame;
+package yugiohgame.Cards;
 
 import java.util.HashMap;
 import java.util.Map;

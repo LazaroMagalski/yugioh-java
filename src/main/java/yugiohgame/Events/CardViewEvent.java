@@ -1,6 +1,7 @@
-package yugiohgame;
+package yugiohgame.Events;
 
 import javafx.event.Event;
+import yugiohgame.Views.CardView;
 
 public class CardViewEvent extends Event {
 

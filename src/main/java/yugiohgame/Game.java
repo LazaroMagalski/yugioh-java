@@ -3,14 +3,22 @@ package yugiohgame;
 import java.util.LinkedList;
 import java.util.List;
 
-import yugiohgame.FieldView.CardType;
+import yugiohgame.Views.FieldView.CardType;
+import yugiohgame.Cards.Card;
+import yugiohgame.Cards.MonsterCard;
+import yugiohgame.Components.Deck;
+import yugiohgame.Components.Field;
+import yugiohgame.Components.Hand;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
+import yugiohgame.Views.FieldView;
 
 public class Game {
 	private static Game game = new Game();
 	private int ptsJ1, ptsJ2;
-	private CardField spellJ1, monsterJ1, spellJ2, monsterJ2;
-	private CardHand handJ1, handJ2;
-	private CardBaralho baralhoJ1, baralhoJ2;
+	private Field spellJ1, monsterJ1, spellJ2, monsterJ2;
+	private Hand handJ1, handJ2;
+	private Deck baralhoJ1, baralhoJ2;
 	private int player;
 	private int jogadas;
 	private List<GameListener> observers;
@@ -24,22 +32,22 @@ public class Game {
 	private Game() {
 		ptsJ1 = 8000;
 		ptsJ2 = 8000;
-		spellJ1 = new CardField();
-		monsterJ1 = new CardField();
+		spellJ1 = new Field();
+		monsterJ1 = new Field();
 		
-		spellJ2 = new CardField();
-		monsterJ2 = new CardField();
+		spellJ2 = new Field();
+		monsterJ2 = new Field();
 
-		handJ1 = new CardHand(1);
-		handJ2 = new CardHand(2);
+		handJ1 = new Hand(1);
+		handJ2 = new Hand(2);
 
-		baralhoJ1 = new CardBaralho(1);
-		baralhoJ2 = new CardBaralho(2);
+		baralhoJ1 = new Deck(1);
+		baralhoJ2 = new Deck(2);
 		handJ1.addCardHand(baralhoJ1, 5);
 		handJ2.addCardHand(baralhoJ2, 5);
 
 		player = 1;
-		jogadas = CardField.NCARDS;
+		jogadas = Field.NCARDS;
 		observers = new LinkedList<>();
 	}
 
@@ -62,84 +70,81 @@ public class Game {
 	}
 
 
-	public CardField getDeckJ1(CardType cardType) {
+	public Field getDeckJ1(CardType cardType) {
 		if (cardType == FieldView.CardType.MONSTERCARD) return monsterJ1;
 		if (cardType == FieldView.CardType.SPELLCARD) return spellJ1;
 		return null;
 	}
 
 
-	public CardField getDeckJ2(CardType cardType) {
+	public Field getDeckJ2(CardType cardType) {
 		if (cardType == FieldView.CardType.MONSTERCARD) return monsterJ2;
 		if (cardType == FieldView.CardType.SPELLCARD) return spellJ2;
 		return null;
 	}
 
 
-	public CardHand getHandJ1() {
+	public Hand getHandJ1() {
 		return handJ1;
 	}
 
 
-	public CardHand getHandJ2() {
+	public Hand getHandJ2() {
 		return handJ2;
 	}
 
 
-	public CardBaralho getBaralhoJ1() {
+	public Deck getBaralhoJ1() {
 		return baralhoJ1;
 	}
 
-	public CardBaralho getBaralhoJ2() {
+	public Deck getBaralhoJ2() {
 		return baralhoJ2;
 	}
 
 
-	public void play(CardField field) {
+	public void play(Field field) {
 		GameEvent gameEvent = null;
+
 		if (field == monsterJ1){
 			if (player != 1){
 				gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "1");
-				for (var observer : observers) {
-					observer.notify(gameEvent);
-				}
 			}else {
 				nextPlayer();
 			}
+
 		} else if (field == monsterJ2) {
 			if (player != 2) {
 				gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "2");
-				for (var observer : observers) {
-					observer.notify(gameEvent);
-				}
 			} else {
 				// Verifica quem ganhou a rodada
-				if (monsterJ1.getSelectedCard().getValue() > monsterJ2.getSelectedCard().getValue()) {
-					ptsJ2 -= monsterJ1.getSelectedCard().getValue() - monsterJ2.getSelectedCard().getValue();
+				MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
+				MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
+				if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
+					ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
 					monsterJ2.removeSel();
 					gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-				} else if (monsterJ1.getSelectedCard().getValue() < monsterJ2.getSelectedCard().getValue()) {
-					ptsJ1 -= monsterJ2.getSelectedCard().getValue() - monsterJ1.getSelectedCard().getValue();
+				} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
+					ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
 					monsterJ1.removeSel();
 					gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 				} else{
 					gameEvent = null;
 				}
-				for (var observer : observers) {
-					observer.notify(gameEvent);
-				}
+			
 				// Próximo jogador
 				nextPlayer();
 			}
 		}
 		if (ptsJ1 <= 0 || baralhoJ1.getNumberOfCards() == 0){
 			gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.ENDGAME, "2");
-			for (var observer : observers) {
-				observer.notify(gameEvent);
-			}
 		}
+
 		if (ptsJ2 <= 0 || baralhoJ2.getNumberOfCards() == 0){
 			gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.ENDGAME, "1");
+		}
+
+		if(gameEvent != null){
 			for (var observer : observers) {
 				observer.notify(gameEvent);
 			}
@@ -166,7 +171,7 @@ public class Game {
 	}
 
 
-	public void addHand(CardBaralho c) {
+	public void addHand(Deck c) {
 		GameEvent gameEvent = null;
 		if (c == baralhoJ1) {
 			if (handJ1.getNumberOfCards() < 7){

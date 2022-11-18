@@ -1,10 +1,13 @@
-package yugiohgame;
+package yugiohgame.Views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import yugiohgame.Game;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
 
 public class PlacarView extends GridPane implements GameListener {
 	private TextField ptsJ1, ptsJ2;

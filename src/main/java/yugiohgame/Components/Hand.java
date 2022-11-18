@@ -1,4 +1,4 @@
-package yugiohgame;
+package yugiohgame.Components;
 
 
 import java.util.ArrayList;
@@ -6,14 +6,18 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CardHand {
+import yugiohgame.Cards.Card;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
+
+public class Hand {
 	public static final int NCARDS = 7;
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
-	private CardBaralho baralho;
+	private Deck baralho;
 	
-	public CardHand(int nroJogador) {
+	public Hand(int nroJogador) {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
 		
@@ -27,7 +31,7 @@ public class CardHand {
 	public int getNumberOfCards() {
 		return cartas.size();
 	}
-	public void addCardHand(CardBaralho baralho, int nCards) {
+	public void addCardHand(Deck baralho, int nCards) {
 		for (int i = 0; i < nCards; i++) {
 			Card c = baralho.drawCard();
 			c.flip();

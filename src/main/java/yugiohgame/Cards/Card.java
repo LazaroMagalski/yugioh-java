@@ -1,4 +1,4 @@
-package yugiohgame;
+package yugiohgame.Cards;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -6,36 +6,23 @@ import java.beans.PropertyChangeSupport;
 public class Card {
 	private String id;
 	private String imageId;
-	private int value;
 	private boolean faceUp;
-	private boolean hand;
 	private final PropertyChangeSupport pcs;
 
-	public Card(String anId, String anImageId, int val) {
+	public Card(String anId, String anImageId) {
 		id = anId;
 		imageId = anImageId;
-		value = val;
 		faceUp = true;
-		hand = true;
 		pcs = new PropertyChangeSupport(this);
 	}
 
 
-	public void summon(){
-		boolean old = hand;
-		hand = !hand;
-		pcs.firePropertyChange("summon", old, id);
-	}
 	public String getId() {
 		return id;
 	}
 
 	public String getImageId() {
 		return imageId;
-	}
-
-	public int getValue() {
-		return value;
 	}
 
 	public boolean isFacedUp() {

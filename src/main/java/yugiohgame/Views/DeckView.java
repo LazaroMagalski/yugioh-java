@@ -1,4 +1,4 @@
-package yugiohgame;
+package yugiohgame.Views;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -6,15 +6,24 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import yugiohgame.Game;
+import yugiohgame.Cards.Card;
+import yugiohgame.Components.Deck;
+import yugiohgame.Events.CardViewEvent;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Events.GameEvent.Action;
+import yugiohgame.Events.GameEvent.Target;
+import yugiohgame.Listeners.CardViewListener;
+import yugiohgame.Listeners.GameListener;
 
-public class BaralhoView extends HBox implements CardViewListener, GameListener {
+public class DeckView extends HBox implements CardViewListener, GameListener {
 	private int jogador;
-	private CardBaralho cDeck;
+	private Deck cDeck;
 	private Card selectedCard;
 	private TextField numberCards;
 
 
-	public BaralhoView(int nroJog) {
+	public DeckView(int nroJog) {
 		super(4);
 		this.setAlignment(Pos.CENTER);
 
@@ -43,7 +52,7 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 			}
 		}
 	}
-	private CardBaralho getDeck(){
+	private Deck getDeck(){
 		return cDeck;
 	}
 
@@ -79,7 +88,7 @@ public class BaralhoView extends HBox implements CardViewListener, GameListener 
 
 	@Override
 	public void handle(CardViewEvent event) {
-		CardBaralho baralho = getDeck();
+		Deck baralho = getDeck();
 		Game.getInstance().addHand(baralho);
 		getTopo();
 	}

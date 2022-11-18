@@ -1,9 +1,13 @@
-package yugiohgame;
+package yugiohgame.Views;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javafx.scene.control.Button;
+import yugiohgame.Cards.Card;
+import yugiohgame.Cards.ImageFactory;
+import yugiohgame.Events.CardViewEvent;
+import yugiohgame.Listeners.CardViewListener;
 
 public class CardView extends Button implements PropertyChangeListener{
 	private Card card;

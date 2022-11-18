@@ -1,4 +1,4 @@
-package yugiohgame;
+package yugiohgame.Views;
 
 import java.util.List;
 
@@ -6,10 +6,19 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import yugiohgame.Cards.Card;
+import yugiohgame.Components.Hand;
+import yugiohgame.Events.CardViewEvent;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Events.GameEvent.Action;
+import yugiohgame.Events.GameEvent.Target;
+import yugiohgame.Listeners.CardViewListener;
+import yugiohgame.Listeners.GameListener;
+import yugiohgame.Game;
 
 public class HandView extends HBox implements CardViewListener, GameListener {
 	private int jogador;
-	private CardHand cDeck;
+	private Hand cDeck;
 	private Card selectedCard;
 
 	public HandView(int nroJog) {

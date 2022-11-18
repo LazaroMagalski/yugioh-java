@@ -1,4 +1,4 @@
-package yugiohgame;
+package yugiohgame.Events;
 
 import java.util.EventObject;
 
@@ -36,6 +36,7 @@ public class GameEvent extends EventObject {
 		return arg;
 	}
 
+	@Override
 	public String toString() {
 		return target + ":" + action + ":" + arg;
 	}
