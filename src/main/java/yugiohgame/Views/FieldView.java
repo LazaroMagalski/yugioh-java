@@ -9,8 +9,6 @@ import yugiohgame.Cards.Card;
 import yugiohgame.Components.Field;
 import yugiohgame.Events.CardViewEvent;
 import yugiohgame.Events.GameEvent;
-import yugiohgame.Events.GameEvent.Action;
-import yugiohgame.Events.GameEvent.Target;
 import yugiohgame.Listeners.CardViewListener;
 import yugiohgame.Listeners.GameListener;
 
@@ -35,6 +33,7 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 		this.cardType = cardType;
 	
 		cDeck = null;
+		
 		if (jogador == 1) {
 			cDeck = Game.getInstance().getDeckJ1(cardType);
 		} else {

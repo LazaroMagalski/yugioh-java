@@ -107,19 +107,21 @@ public class Game {
 		GameEvent gameEvent = null;
 
 		if (field == monsterJ1){
-			if (player != 1){
-				gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "1");
-			}else {
-				nextPlayer();
+			if (monsterJ2.getNumberOfCards() == 0){
+				MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
+				ptsJ2 -= monster1.getAtkPoints();
+				gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 			}
+			nextPlayer();
 
 		} else if (field == monsterJ2) {
-			if (player != 2) {
-				gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "2");
-			} else {
-				// Verifica quem ganhou a rodada
+			// Verifica quem ganhou a rodada
+			MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
+			if (monsterJ1.getNumberOfCards() == 0) {
+				ptsJ1 -= monster2.getAtkPoints();
+				gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+			}else{
 				MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
-				MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
 				if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
 					ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
 					monsterJ2.removeSel();
@@ -131,11 +133,11 @@ public class Game {
 				} else{
 					gameEvent = null;
 				}
-			
-				// Próximo jogador
-				nextPlayer();
 			}
-		}
+			// Próximo jogador
+			nextPlayer();
+			}
+		
 		if (ptsJ1 <= 0 || baralhoJ1.getNumberOfCards() == 0){
 			gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.ENDGAME, "2");
 		}
