@@ -52,7 +52,6 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 		for (Card card : cDeck.getCards()) {
 			card.flip();
 			CardView cv = new CardView(card);
-			System.out.println(card.isFacedUp());
 			card.flip();
 			cv.setCardViewObserver(this);
 			this.getChildren().add(cv);

@@ -1,5 +1,6 @@
 package yugiohgame.Views;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -7,6 +8,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import yugiohgame.Cards.Card;
+import yugiohgame.Cards.MonsterCard;
+import yugiohgame.Cards.SpellCard;
+import yugiohgame.Cards.TrapCard;
 import yugiohgame.Components.Hand;
 import yugiohgame.Events.CardViewEvent;
 import yugiohgame.Events.GameEvent;
@@ -14,6 +18,7 @@ import yugiohgame.Events.GameEvent.Action;
 import yugiohgame.Events.GameEvent.Target;
 import yugiohgame.Listeners.CardViewListener;
 import yugiohgame.Listeners.GameListener;
+import yugiohgame.Views.FieldView.CardType;
 import yugiohgame.Game;
 
 public class HandView extends HBox implements CardViewListener, GameListener {
@@ -92,14 +97,23 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		CardView cv = event.getCardView();
 		int j = getJogador();
 		int numberCards = 0;
+		selectedCard = cv.getCard();
+		CardType cardType = null;
 
-		if(j == 1) numberCards = (Game.getInstance().getDeckJ1(FieldView.CardType.MONSTERCARD).getNumberOfCards());
-		if(j == 2) numberCards = (Game.getInstance().getDeckJ2(FieldView.CardType.MONSTERCARD).getNumberOfCards());
+		if (selectedCard instanceof MonsterCard) {
+					if(j == 1) numberCards = (Game.getInstance().getDeckJ1(FieldView.CardType.MONSTERCARD).getNumberOfCards());
+					if(j == 2) numberCards = (Game.getInstance().getDeckJ2(FieldView.CardType.MONSTERCARD).getNumberOfCards());
+					cardType = FieldView.CardType.MONSTERCARD;
+
+		}else if (selectedCard instanceof SpellCard || selectedCard instanceof TrapCard){
+					if(j == 1) numberCards = (Game.getInstance().getDeckJ1(FieldView.CardType.SPELLCARD).getNumberOfCards());
+					if(j == 2) numberCards = (Game.getInstance().getDeckJ2(FieldView.CardType.SPELLCARD).getNumberOfCards());
+					cardType = FieldView.CardType.SPELLCARD;
+		}
 
 		if (numberCards < 5) {
-			selectedCard = cv.getCard();
 			cDeck.setSelectedCard(selectedCard);
-			Game.getInstance().addField(selectedCard, j);
+			Game.getInstance().addField(selectedCard, j, cardType);
 			removeSel();
 		}
 	}

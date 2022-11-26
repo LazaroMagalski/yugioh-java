@@ -14,6 +14,8 @@ import java.util.Stack;
 
 import yugiohgame.Cards.Card;
 import yugiohgame.Cards.MonsterCard;
+import yugiohgame.Cards.SpellCard;
+import yugiohgame.Cards.TrapCard;
 import yugiohgame.Events.GameEvent;
 import yugiohgame.Listeners.GameListener;
 
@@ -24,7 +26,7 @@ public class Deck {
 	private List<GameListener> observers;
 
 	public Deck(int nroJogador) {
-		cartas = new Stack<Card>();
+		cartas = new Stack<>();
 		selected = null;
 
 		String caminhoAtual = "";
@@ -43,12 +45,33 @@ public class Deck {
 				String[] elements;
 				elements = line.split(",");
 				
-				String cardName = elements[0];
-				int level = Integer.parseInt(elements[1]);
-				int atk = Integer.parseInt(elements[2]);
-				int def = Integer.parseInt(elements[3]);
+				String cardType = elements[0];
+				String cardName = elements[1];
 
-				Card c = new MonsterCard(cardName,cardName,level,atk,def);
+				Card c = null;
+
+				switch (cardType){
+					case "MonsterCard":
+						int level = Integer.parseInt(elements[2]);
+						int atk = Integer.parseInt(elements[3]);
+						int def = Integer.parseInt(elements[4]);
+		
+						c = new MonsterCard(cardName,cardName,level,atk,def);
+						break;
+					
+					case "SpellCard":
+						String spellEffect = elements[2];
+						
+						c = new SpellCard(cardName,cardName);
+						break;
+					case "TrapCard":
+						String trapEffect = elements[2];
+
+						c = new TrapCard(cardName, cardName);
+						break;
+					default:
+				}
+
 				cartas.push(c);
             }
         } catch (IOException x) {
