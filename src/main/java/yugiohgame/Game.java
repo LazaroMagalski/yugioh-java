@@ -52,11 +52,13 @@ public class Game {
 	}
 
 
-	private void nextPlayer() {
+	public int nextPlayer() {
 		player++;
 		if (player == 3) {
 			player = 1;
 		}
+		
+		return player;
 	}
 
 

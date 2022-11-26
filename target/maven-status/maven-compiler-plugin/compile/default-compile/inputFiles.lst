@@ -1,19 +1,19 @@
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Events\GameEvent.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\Card.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\PlacarView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Components\Hand.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Events\CardViewEvent.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Components\Deck.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Listeners\CardViewListener.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\FieldView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\TrapCard.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\MonsterCard.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\CardView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\DeckView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\ImageFactory.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Game.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Listeners\GameListener.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\GameWindow.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Components\Field.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\SpellCard.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\HandView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Cards\Card.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Events\CardViewEvent.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Views\CardView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Cards\MonsterCard.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Views\DeckView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Cards\ImageFactory.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Game.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\GameWindow.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Components\Field.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Cards\TrapCard.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Components\Deck.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Events\GameEvent.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Views\PlacarView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Listeners\CardViewListener.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Views\HandView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Views\FieldView.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Cards\SpellCard.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Listeners\GameListener.java
+C:\Users\LázaroMagalski\OneDrive - SMART CONSULTING\Área de Trabalho\yugioh-java\src\main\java\yugiohgame\Components\Hand.java

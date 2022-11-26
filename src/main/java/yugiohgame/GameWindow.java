@@ -3,12 +3,14 @@ package yugiohgame;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import yugiohgame.Events.GameEvent;
 import yugiohgame.Listeners.GameListener;
@@ -26,6 +28,9 @@ public class GameWindow extends Application implements GameListener {
 	@Override
 	public void start(Stage primaryStage) {
 		Game.getInstance().addGameListener(this);
+	
+		//primaryStage.setWidth(1200);
+		//primaryStage.setHeight(650);
 
 		primaryStage.setTitle("Batalha de Cartas");
 
@@ -62,10 +67,11 @@ public class GameWindow extends Application implements GameListener {
 		grid.add(sdBaralho1, 0, 0);
 
 		PlacarView placar = new PlacarView();
-		grid.add(placar, 0, 3);
+		grid.add(placar, 0, 2);
+
 
 		Button butClean = new Button("Clean");
-		grid.add(butClean, 2, 3);
+		grid.add(butClean, 2, 2);
 		butClean.setOnAction(e -> Game.getInstance().removeSelected());
 
 		FieldView fieldSpell2 = new FieldView(2, FieldView.CardType.SPELLCARD);
