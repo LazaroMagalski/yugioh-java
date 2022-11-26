@@ -100,6 +100,7 @@ public class Game {
 		return baralhoJ1;
 	}
 
+
 	public Deck getBaralhoJ2() {
 		return baralhoJ2;
 	}
@@ -200,18 +201,18 @@ public class Game {
 	}
 
 
-	public void addField(Card c, int j) {
+	public void addField(Card c, int j, CardType cardType) {
 		GameEvent gameEvent = null;
 		if (j == 1) {
 			
-			getDeckJ1(FieldView.CardType.MONSTERCARD).addCard(c);
+			getDeckJ1(cardType).addCard(c);
 			gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "1");
 			handJ1.removeSel();
 
 		}
 		if (j == 2) {
 
-			getDeckJ2(FieldView.CardType.MONSTERCARD).addCard(c);
+			getDeckJ2(cardType).addCard(c);
 			gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "2");
 			handJ2.removeSel();
 		}

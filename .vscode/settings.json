@@ -1,6 +1,8 @@
 {
     "java.configuration.updateBuildConfiguration": "disabled",
     "cSpell.words": [
+        "cartas",
+        "jogador",
         "MONSTERCARD",
         "yugiohgame"
     ]
