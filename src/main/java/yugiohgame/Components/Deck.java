@@ -64,10 +64,12 @@ public class Deck {
 						int modifier = Integer.parseInt(elements[3]);
 						c = new SpellCard(cardName,cardName, spellEffect, modifier);
 						break;
+
 					case "TrapCard":
+						System.out.println(elements[1]);
 						String trapEffect = elements[2];
-						
-						c = new TrapCard(cardName, cardName);
+						int mod = Integer.parseInt(elements[3]);
+						c = new TrapCard(cardName,cardName, trapEffect, mod);
 						break;
 					default:
 				}
