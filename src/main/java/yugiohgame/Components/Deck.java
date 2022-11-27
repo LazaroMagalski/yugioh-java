@@ -66,7 +66,7 @@ public class Deck {
 						break;
 
 					case "TrapCard":
-						System.out.println(elements[1]);
+						System.out.println(cardName);
 						String trapEffect = elements[2];
 						int mod = Integer.parseInt(elements[3]);
 						c = new TrapCard(cardName,cardName, trapEffect, mod);

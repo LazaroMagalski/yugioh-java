@@ -29,8 +29,8 @@ public class GameWindow extends Application implements GameListener {
 	public void start(Stage primaryStage) {
 		Game.getInstance().addGameListener(this);
 	
-		primaryStage.setWidth(1200);
-		primaryStage.setHeight(650);
+		// primaryStage.setWidth(1200);
+		// primaryStage.setHeight(650);
 
 		primaryStage.setTitle("Batalha de Cartas");
 
@@ -70,9 +70,9 @@ public class GameWindow extends Application implements GameListener {
 		grid.add(placar, 0, 2);
 
 
-		Button butClean = new Button("Clean");
+		Button butClean = new Button("Finalizar Turno");
 		grid.add(butClean, 2, 2);
-		butClean.setOnAction(e -> Game.getInstance().removeSelected());
+		butClean.setOnAction(e -> Game.getInstance().nextPlayer());
 
 		FieldView fieldSpell2 = new FieldView(2, FieldView.CardType.SPELLCARD);
 		FieldView fieldMonster2 = new FieldView(2, FieldView.CardType.MONSTERCARD);
@@ -123,6 +123,13 @@ public class GameWindow extends Application implements GameListener {
 				alert.setTitle("Parabens !!");
 				alert.setHeaderText(null);
 				alert.setContentText(text);
+				alert.showAndWait();
+				break;
+			case INVPLAY:
+				alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Alerta");
+				alert.setHeaderText(null);
+				alert.setContentText(eg.getArg());
 				alert.showAndWait();
 				break;
 			case REMOVESEL:
