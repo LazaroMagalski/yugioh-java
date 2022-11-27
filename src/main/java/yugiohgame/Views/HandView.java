@@ -22,7 +22,7 @@ import yugiohgame.Game;
 
 public class HandView extends HBox implements CardViewListener, GameListener {
 	private int jogador;
-	private Hand cDeck;
+	private Hand cHand;
 	private Card selectedCard;
 
 	public HandView(int nroJog) {
@@ -32,15 +32,15 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		jogador = nroJog;
 		selectedCard = null;
 
-		cDeck = null;
+		cHand = null;
 		if (jogador == 1) {
-			cDeck = Game.getInstance().getHandJ1();
+			cHand = Game.getInstance().getHandJ1();
 		} else {
-			cDeck = Game.getInstance().getHandJ2();
+			cHand = Game.getInstance().getHandJ2();
 		}
-		cDeck.addGameListener(this);
+		cHand.addGameListener(this);
 
-		for (Card card : cDeck.getCards()) {
+		for (Card card : cHand.getCards()) {
 			CardView cv = new CardView(card);
 			card.flip();
 			cv.setCardViewObserver(this);
@@ -60,10 +60,10 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 	}
 
 	private void drawCard(String jogador) {
-		int numberCards = cDeck.getNumberOfCards();
+		int numberCards = cHand.getNumberOfCards();
 		if (Integer.parseInt(jogador) == this.jogador){
 		
-			List<Card> hand = cDeck.getCards();
+			List<Card> hand = cHand.getCards();
 
 			Card drawedCard = hand.get(numberCards-1);
 			CardView cv = new CardView(drawedCard);
@@ -111,7 +111,7 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		}
 
 		if (numberCards < 5) {
-			cDeck.setSelectedCard(selectedCard);
+			cHand.setSelectedCard(selectedCard);
 			Game.getInstance().addField(selectedCard, j, cardType);
 
 			if (selectedCard instanceof SpellCard){

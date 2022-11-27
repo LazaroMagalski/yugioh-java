@@ -26,6 +26,7 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 	public DeckView(int nroJog) {
 		super(4);
 		this.setAlignment(Pos.CENTER);
+		Game.getInstance().addGameListener(this);
 
 		jogador = nroJog;
 		selectedCard = null;
@@ -83,6 +84,9 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 		}
 		if (event.getAction() == GameEvent.Action.REMOVESEL) {
 			removeSel();
+		}
+		if (event.getAction() == GameEvent.Action.PLAYERCHANGE){
+			getTopo();
 		}
 	}
 

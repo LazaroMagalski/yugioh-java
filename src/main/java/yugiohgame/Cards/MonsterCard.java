@@ -1,7 +1,7 @@
 package yugiohgame.Cards;
 
 public class MonsterCard extends Card {
-    private boolean isAttack;
+    private boolean canAttack;
     private int atkPoints, defPoints, level;
 
     public MonsterCard(String anId, String anImageId,int level, int atk, int def) {
@@ -9,10 +9,11 @@ public class MonsterCard extends Card {
         this.atkPoints = atk;
         this.defPoints = def;
         this.level = level;
+        this.canAttack = true;
     }
 
-    public boolean isAttack() {
-        return isAttack;
+    public boolean canAttack() {
+        return canAttack;
     }
 
     public int getAtkPoints() {
@@ -24,9 +25,13 @@ public class MonsterCard extends Card {
     }
 
     public void changePosition() {
-        this.isAttack = !this.isAttack;
+        this.canAttack = !this.canAttack;
     }
 
+    public void setAttack(boolean attack) {
+        this.canAttack = attack;
+    }
+    
     public void addAtkPoints(int addModifier) {
         this.atkPoints += addModifier;
     }

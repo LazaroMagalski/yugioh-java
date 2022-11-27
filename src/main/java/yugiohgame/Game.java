@@ -43,7 +43,7 @@ public class Game {
 
 		baralhoJ1 = new Deck(1);
 		baralhoJ2 = new Deck(2);
-		handJ1.addCardHand(baralhoJ1, 5);
+		handJ1.addCardHand(baralhoJ1, 6);
 		handJ2.addCardHand(baralhoJ2, 5);
 
 		player = 1;
@@ -53,14 +53,42 @@ public class Game {
 
 
 	public int nextPlayer() {
+		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.BARALHO, GameEvent.Action.PLAYERCHANGE, null);
+
 		player++;
 		if (player == 3) {
 			player = 1;
 		}
-		
+
+		switch(player){
+			case 1:
+				addHand(baralhoJ1);
+				break;
+			case 2:
+				addHand(baralhoJ2);
+				break;
+			default:
+				break;
+
+		}
+
+		for (Card c : monsterJ1.getCards()){
+			MonsterCard m = (MonsterCard) c;
+			m.setAttack(true);
+		}
+
+		for (Card c : monsterJ2.getCards()){
+			MonsterCard m = (MonsterCard) c;
+			m.setAttack(true);
+		}
+
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
 		return player;
 	}
 
+	public int getPlayer() { return this.player; }
 
 	public int getPtsJ1() {
 		return ptsJ1;
@@ -105,6 +133,7 @@ public class Game {
 		return baralhoJ2;
 	}
 
+
 	public void reduceLP(int modifier, int jogador) {
 		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 		if (jogador==1){
@@ -116,6 +145,7 @@ public class Game {
 			observer.notify(gameEvent);
 		}
 	}
+
 
 	public void addLP(int modifier, int jogador) {
 		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
@@ -129,41 +159,102 @@ public class Game {
 		}
 	}
 
+
 	public void play(Field field) {
 		GameEvent gameEvent = null;
+		MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
+		MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
 
-		if (field == monsterJ1){
-			if (monsterJ2.getNumberOfCards() == 0){
-				MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
-				ptsJ2 -= monster1.getAtkPoints();
-				gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-			}
-			nextPlayer();
-
-		} else if (field == monsterJ2) {
-			// Verifica quem ganhou a rodada
-			MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
-			if (monsterJ1.getNumberOfCards() == 0) {
-				ptsJ1 -= monster2.getAtkPoints();
-				gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-			}else{
-				MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
-				if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
-					ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
-					monsterJ2.removeSel();
-					gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-				} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
-					ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
-					monsterJ1.removeSel();
-					gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-				} else{
-					gameEvent = null;
+		switch (player){
+			case 1:
+				if (field == monsterJ1){
+					if (monster1.canAttack()){
+						if (monsterJ2.getNumberOfCards() == 0){
+							ptsJ2 -= monster1.getAtkPoints();
+							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+							monster1.changePosition();
+						}
+					}else{
+						for (var observer : observers) {
+							observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "ESSE MONSTRO JÁ ATACOU, ESCOLHA OUTRO"));
+						}
+						return;
+					}
+				}else if (field == monsterJ2){
+					if (monster1 == null) {
+						for (var observer : observers) {
+							observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "ESCOLHA PRIMEIRO UM MONSTRO ATACANTE"));
+						}
+						return;
+					}else if (monster1.canAttack()) {
+						if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
+							ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
+							monsterJ2.removeSel();
+							monster1.changePosition();
+							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+						} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
+							ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
+							monsterJ1.removeSel();
+							monster1.changePosition();
+							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+						} else{
+							gameEvent = null;
+						}
+					}else{
+						for (var observer : observers) {
+							observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "ESSE MONSTRO JÁ ATACOU, ESCOLHA OUTRO"));
+						}
+						return;
+					}
 				}
-			}
-			// Próximo jogador
-			nextPlayer();
-			}
-		
+				break;
+
+
+			case 2:
+				if (field == monsterJ2){
+					if (monster2.canAttack()){
+						if (monsterJ1.getNumberOfCards() == 0){
+							ptsJ1 -= monster2.getAtkPoints();
+							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+							monster2.changePosition();
+						}
+					}else{
+						for (var observer : observers) {
+							observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "ESSE MONSTRO JÁ ATACOU, ESCOLHA OUTRO"));
+						}
+						return;
+					}
+				}else if (field == monsterJ1){
+					if (monster2 == null) {
+						for (var observer : observers) {
+							observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "ESCOLHA PRIMEIRO UM MONSTRO ATACANTE"));
+						}
+						return;
+					}else if(monster2.canAttack()) {
+						if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
+							ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
+							monsterJ2.removeSel();
+							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+						} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
+							ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
+							monsterJ1.removeSel();
+							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+						} else{
+							gameEvent = null;
+						}
+					}else{
+						for (var observer : observers) {
+							observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "ESSE MONSTRO JÁ ATACOU, ESCOLHA OUTRO"));
+						}
+						return;
+					}
+				}
+				break;
+			default:
+				break;
+				
+			
+		}
 		if (ptsJ1 <= 0 || baralhoJ1.getNumberOfCards() == 0){
 			gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.ENDGAME, "2");
 		}

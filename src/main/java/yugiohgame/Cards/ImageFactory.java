@@ -20,26 +20,6 @@ public class ImageFactory {
 
 	private String id2File(String imgId) {
 		switch (imgId) {
-		case "img1":
-			return ("/imagens/Um.png");
-		case "img2":
-			return ("/imagens/Dois.png");
-		case "img3":
-			return ("/imagens/Tres.png");
-		case "img4":
-			return ("/imagens/Quatro.png");
-		case "img5":
-			return ("/imagens/Cinco.png");
-		case "img6":
-			return ("/imagens/Seis.png");
-		case "img7":
-			return ("/imagens/Sete.png");
-		case "img8":
-			return ("/imagens/Oito.png");
-		case "img9":
-			return ("/imagens/Nove.png");
-		case "img10":
-			return ("/imagens/Dez.png");
 		case "imgBck":
 			return ("/imagens/back_yugi.jpg");
 		default:

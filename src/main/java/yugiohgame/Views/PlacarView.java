@@ -41,7 +41,7 @@ public class PlacarView extends GridPane implements GameListener {
 	public void notify(GameEvent event) {
 		ptsJ1.setText("" + Game.getInstance().getPtsJ1());
 		ptsJ2.setText("" + Game.getInstance().getPtsJ2());
-		if(Game.getInstance().nextPlayer()==1){
+		if(Game.getInstance().getPlayer()==1){
 			lbJ1.setStyle("-fx-font-weight: bold");
 			lbJ2.setStyle("-fx-font-weight: regular");
 		}
