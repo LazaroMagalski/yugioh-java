@@ -61,8 +61,7 @@ public class Deck {
 					
 					case "SpellCard":
 						String spellEffect = elements[2];
-						
-						c = new SpellCard(cardName,cardName);
+						c = new SpellCard(cardName,cardName, spellEffect);
 						break;
 					case "TrapCard":
 						String trapEffect = elements[2];

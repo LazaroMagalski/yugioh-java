@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import yugiohgame.Game;
 import yugiohgame.Cards.Card;
+import yugiohgame.Cards.SpellCard;
 import yugiohgame.Components.Field;
 import yugiohgame.Events.CardViewEvent;
 import yugiohgame.Events.GameEvent;
@@ -35,9 +36,9 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 		cDeck = null;
 		
 		if (jogador == 1) {
-			cDeck = Game.getInstance().getDeckJ1(cardType);
+			cDeck = Game.getInstance().getFieldJ1(cardType);
 		} else {
-			cDeck = Game.getInstance().getDeckJ2(cardType);
+			cDeck = Game.getInstance().getFieldJ2(cardType);
 		}
 		cDeck.addGameListener(this);
 
@@ -49,14 +50,19 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 	private void makeField() {
 		
 		this.getChildren().clear();
+
 		for (Card card : cDeck.getCards()) {
 			card.flip();
 			CardView cv = new CardView(card);
 			card.flip();
 			cv.setCardViewObserver(this);
 			this.getChildren().add(cv);
+
+			
+		
 		}
 	}
+
 
 
 	private void removeSel() {
@@ -76,7 +82,7 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 			return;
 		}
 		if (event.getAction() == GameEvent.Action.REMOVESEL) {
-			removeSel();
+			makeField();
 		}
 		if (event.getAction() == GameEvent.Action.SUMMONCARD) {
 			makeField();

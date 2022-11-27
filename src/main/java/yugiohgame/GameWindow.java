@@ -114,7 +114,7 @@ public class GameWindow extends Application implements GameListener {
 			switch (eg.getAction()) {
 			case ENDGAME:
 				String text = "Fim de Jogo !!\n";
-				if (eg.getArg() == "1") {
+				if (eg.getArg().equals("1")) {
 					text += "O jogador 1 ganhou !! :-)";
 				} else {
 					text += "O jogador 2 ganhou !! :-)";
@@ -128,6 +128,7 @@ public class GameWindow extends Application implements GameListener {
 			case REMOVESEL:
 			case SUMMONCARD:
 			case DRAWCARD:
+			default:
 				// Esse evento não vem para cá
 			}
 		}

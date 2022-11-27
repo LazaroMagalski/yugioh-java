@@ -72,14 +72,14 @@ public class Game {
 	}
 
 
-	public Field getDeckJ1(CardType cardType) {
+	public Field getFieldJ1(CardType cardType) {
 		if (cardType == FieldView.CardType.MONSTERCARD) return monsterJ1;
 		if (cardType == FieldView.CardType.SPELLCARD) return spellJ1;
 		return null;
 	}
 
 
-	public Field getDeckJ2(CardType cardType) {
+	public Field getFieldJ2(CardType cardType) {
 		if (cardType == FieldView.CardType.MONSTERCARD) return monsterJ2;
 		if (cardType == FieldView.CardType.SPELLCARD) return spellJ2;
 		return null;
@@ -205,14 +205,14 @@ public class Game {
 		GameEvent gameEvent = null;
 		if (j == 1) {
 			
-			getDeckJ1(cardType).addCard(c);
+			getFieldJ1(cardType).addCard(c);
 			gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "1");
 			handJ1.removeSel();
 
 		}
 		if (j == 2) {
 
-			getDeckJ2(cardType).addCard(c);
+			getFieldJ2(cardType).addCard(c);
 			gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "2");
 			handJ2.removeSel();
 		}

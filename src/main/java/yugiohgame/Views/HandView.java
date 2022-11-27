@@ -1,6 +1,6 @@
 package yugiohgame.Views;
 
-import java.lang.reflect.Field;
+
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -11,11 +11,10 @@ import yugiohgame.Cards.Card;
 import yugiohgame.Cards.MonsterCard;
 import yugiohgame.Cards.SpellCard;
 import yugiohgame.Cards.TrapCard;
+import yugiohgame.Components.Field;
 import yugiohgame.Components.Hand;
 import yugiohgame.Events.CardViewEvent;
 import yugiohgame.Events.GameEvent;
-import yugiohgame.Events.GameEvent.Action;
-import yugiohgame.Events.GameEvent.Target;
 import yugiohgame.Listeners.CardViewListener;
 import yugiohgame.Listeners.GameListener;
 import yugiohgame.Views.FieldView.CardType;
@@ -101,19 +100,26 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		CardType cardType = null;
 
 		if (selectedCard instanceof MonsterCard) {
-					if(j == 1) numberCards = (Game.getInstance().getDeckJ1(FieldView.CardType.MONSTERCARD).getNumberOfCards());
-					if(j == 2) numberCards = (Game.getInstance().getDeckJ2(FieldView.CardType.MONSTERCARD).getNumberOfCards());
+					if(j == 1) numberCards = (Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD).getNumberOfCards());
+					if(j == 2) numberCards = (Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD).getNumberOfCards());
 					cardType = FieldView.CardType.MONSTERCARD;
 
 		}else if (selectedCard instanceof SpellCard || selectedCard instanceof TrapCard){
-					if(j == 1) numberCards = (Game.getInstance().getDeckJ1(FieldView.CardType.SPELLCARD).getNumberOfCards());
-					if(j == 2) numberCards = (Game.getInstance().getDeckJ2(FieldView.CardType.SPELLCARD).getNumberOfCards());
+					if(j == 1) numberCards = (Game.getInstance().getFieldJ1(FieldView.CardType.SPELLCARD).getNumberOfCards());
+					if(j == 2) numberCards = (Game.getInstance().getFieldJ2(FieldView.CardType.SPELLCARD).getNumberOfCards());
 					cardType = FieldView.CardType.SPELLCARD;
 		}
 
 		if (numberCards < 5) {
 			cDeck.setSelectedCard(selectedCard);
 			Game.getInstance().addField(selectedCard, j, cardType);
+			if (selectedCard instanceof SpellCard){
+				SpellCard c = (SpellCard) selectedCard;
+				String effect = c.getEffect();
+				System.out.println("Effect Hand View "+effect);
+				Field field = Game.getInstance().getFieldJ1(cardType);
+				field.activateEffect(effect,c);
+			}
 			removeSel();
 		}
 	}
