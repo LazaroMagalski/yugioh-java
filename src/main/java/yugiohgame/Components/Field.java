@@ -7,6 +7,8 @@ import java.util.List;
 
 import yugiohgame.Game;
 import yugiohgame.Cards.Card;
+import yugiohgame.Cards.MonsterCard;
+import yugiohgame.Cards.SpellCard;
 import yugiohgame.Events.GameEvent;
 import yugiohgame.Listeners.GameListener;
 import yugiohgame.Views.FieldView;
@@ -67,9 +69,12 @@ public class Field {
 	}
 
 
-	public void activateEffect(String effect, Card card) {
+	public void activateEffect(String effect, Card card, int jogador) {
 		System.out.println("Effect Field"+effect);
 		GameEvent gameEvent= null;
+		Field field = null;
+		SpellCard s = (SpellCard) card;
+		int modifier = s.getModifier();
 
 		switch(effect) {
 			case "Destroy all monsters":
@@ -86,8 +91,59 @@ public class Field {
 				for (var observer : d2.getObservers()) {
 					observer.notify(gameEvent);
 				}
+				break;
+			case "Destroy the 1 face-up monster your opponent controls that has the lowest ATK":
+
+				if (jogador==1){ 
+					field = Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD); 
+				} else { 
+					field = Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD); 
+				} 
+
+				int aux = 9999999;
+				MonsterCard auxMonster = null;
+
+				for (Card c : field.getCards()) {
+					MonsterCard monster = (MonsterCard) c;
+					if (monster.getAtkPoints() < aux) { 
+						aux = monster.getAtkPoints();
+						auxMonster = monster; 
+					}
+				}
+
+				field.setSelectedCard(auxMonster);
+				field.removeSel();
+				break;
+			case "Increase Attack points by":
 				
-				
+				if (jogador==1){ 
+					field = Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD); 
+				} else { 
+					field = Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD); 
+				}
+
+				for (Card c : field.getCards()){
+					MonsterCard monster = (MonsterCard) c;
+					monster.addAtkPoints(modifier);
+				}
+				break;
+			case "Reduce opponent's LP by":
+				if (jogador==1){ 
+					Game.getInstance().reduceLP(modifier, 2);
+				}else{
+					Game.getInstance().reduceLP(modifier, 1);
+				}
+				break;
+
+			case "Increase your Life Points by":
+				if (jogador==1){ 
+					Game.getInstance().addLP(modifier, 1);
+				}else{
+					Game.getInstance().addLP(modifier, 2);
+				}
+				break;
+			default:
+				break;
 		}
 		setSelectedCard(card);
 		removeSel();

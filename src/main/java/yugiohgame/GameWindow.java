@@ -84,13 +84,13 @@ public class GameWindow extends Application implements GameListener {
 		ScrollPane sdHand2 = new ScrollPane();
 		ScrollPane sdBaralho2 = new ScrollPane();
 
-		sdSpell2.setPrefSize(600, 128);
-		sdSpell2.setContent(fieldSpell2);
-		grid.add(sdSpell2, 1, 5);
-
 		sdField2.setPrefSize(600, 128);
 		sdField2.setContent(fieldMonster2);
 		grid.add(sdField2, 1, 4);
+
+		sdSpell2.setPrefSize(600, 128);
+		sdSpell2.setContent(fieldSpell2);
+		grid.add(sdSpell2, 1, 5);
 
 		sdHand2.setPrefSize(600, 128);
 		sdHand2.setContent(handJ2);

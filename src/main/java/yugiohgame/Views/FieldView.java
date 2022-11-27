@@ -82,6 +82,7 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 			return;
 		}
 		if (event.getAction() == GameEvent.Action.REMOVESEL) {
+			removeSel();
 			makeField();
 		}
 		if (event.getAction() == GameEvent.Action.SUMMONCARD) {

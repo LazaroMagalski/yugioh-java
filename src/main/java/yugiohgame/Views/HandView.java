@@ -98,7 +98,7 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		int numberCards = 0;
 		selectedCard = cv.getCard();
 		CardType cardType = null;
-
+		Field field = null;
 		if (selectedCard instanceof MonsterCard) {
 					if(j == 1) numberCards = (Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD).getNumberOfCards());
 					if(j == 2) numberCards = (Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD).getNumberOfCards());
@@ -113,12 +113,16 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		if (numberCards < 5) {
 			cDeck.setSelectedCard(selectedCard);
 			Game.getInstance().addField(selectedCard, j, cardType);
+
 			if (selectedCard instanceof SpellCard){
 				SpellCard c = (SpellCard) selectedCard;
 				String effect = c.getEffect();
-				System.out.println("Effect Hand View "+effect);
-				Field field = Game.getInstance().getFieldJ1(cardType);
-				field.activateEffect(effect,c);
+				if (j==1) {
+					field = Game.getInstance().getFieldJ1(cardType);
+				}else{
+					field = Game.getInstance().getFieldJ2(cardType);
+				}
+				field.activateEffect(effect,c,j);
 			}
 			removeSel();
 		}

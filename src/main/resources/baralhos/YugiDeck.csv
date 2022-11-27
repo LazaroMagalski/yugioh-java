@@ -18,4 +18,9 @@ MonsterCard,Witty Phantom,4,1400,1300
 MonsterCard,Claw Reacher,3,1000,800
 MonsterCard,Ancient Elf,4,1450,1200
 MonsterCard,Magical Ghost,4,1300,1400
-SpellCard,Dark Hole,Destroy all monsters
+SpellCard,Dark Hole,Destroy all monsters,0
+SpellCard,Book of Secret Arts,Increase Attack points by,300
+SpellCard,Sword of Dark Destruction,Increase Attack points by,400
+SpellCard,Yami,Increase Attack points by,200
+SpellCard,Dian Keto the Cure Master,Increase your Life Points by,1000
+SpellCard,Fissure,Destroy the 1 face-up monster your opponent controls that has the lowest ATK,0

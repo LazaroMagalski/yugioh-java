@@ -61,11 +61,12 @@ public class Deck {
 					
 					case "SpellCard":
 						String spellEffect = elements[2];
-						c = new SpellCard(cardName,cardName, spellEffect);
+						int modifier = Integer.parseInt(elements[3]);
+						c = new SpellCard(cardName,cardName, spellEffect, modifier);
 						break;
 					case "TrapCard":
 						String trapEffect = elements[2];
-
+						
 						c = new TrapCard(cardName, cardName);
 						break;
 					default:

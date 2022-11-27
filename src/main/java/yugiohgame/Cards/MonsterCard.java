@@ -27,5 +27,7 @@ public class MonsterCard extends Card {
         this.isAttack = !this.isAttack;
     }
 
-    
+    public void addAtkPoints(int addModifier) {
+        this.atkPoints += addModifier;
+    }
 }

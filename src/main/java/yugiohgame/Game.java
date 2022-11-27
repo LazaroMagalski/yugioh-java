@@ -105,6 +105,29 @@ public class Game {
 		return baralhoJ2;
 	}
 
+	public void reduceLP(int modifier, int jogador) {
+		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+		if (jogador==1){
+			ptsJ1-=modifier;
+		}else{
+			ptsJ2-=modifier;
+		}
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
+	}
+
+	public void addLP(int modifier, int jogador) {
+		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+		if (jogador==1){
+			ptsJ1+=modifier;
+		}else{
+			ptsJ2+=modifier;
+		}
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
+	}
 
 	public void play(Field field) {
 		GameEvent gameEvent = null;
