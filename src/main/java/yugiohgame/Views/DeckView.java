@@ -11,8 +11,6 @@ import yugiohgame.Cards.Card;
 import yugiohgame.Components.Deck;
 import yugiohgame.Events.CardViewEvent;
 import yugiohgame.Events.GameEvent;
-import yugiohgame.Events.GameEvent.Action;
-import yugiohgame.Events.GameEvent.Target;
 import yugiohgame.Listeners.CardViewListener;
 import yugiohgame.Listeners.GameListener;
 
@@ -73,9 +71,7 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 		this.getChildren().add(numberCards);
 
 	}
-	private int getJogador(){
-		return jogador;
-	}
+
 
 	@Override
 	public void notify(GameEvent event) {

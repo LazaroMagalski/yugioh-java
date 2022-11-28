@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import yugiohgame.Game;
 import yugiohgame.Cards.Card;
-import yugiohgame.Cards.SpellCard;
 import yugiohgame.Components.Field;
 import yugiohgame.Events.CardViewEvent;
 import yugiohgame.Events.GameEvent;
@@ -17,7 +16,6 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 	private int jogador;
 	private Field cDeck;
 	private Card selectedCard;
-	private CardType cardType;
 
 	public enum CardType {
 		MONSTERCARD, SPELLCARD, TRAPCARD
@@ -31,7 +29,6 @@ public class FieldView extends HBox implements CardViewListener, GameListener {
 
 		jogador = nroJog;
 		selectedCard = null;
-		this.cardType = cardType;
 	
 		cDeck = null;
 		

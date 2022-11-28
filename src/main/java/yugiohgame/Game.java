@@ -40,8 +40,8 @@ public class Game {
 		spellJ2 = new Field();
 		monsterJ2 = new Field();
 
-		handJ1 = new Hand(1);
-		handJ2 = new Hand(2);
+		handJ1 = new Hand();
+		handJ2 = new Hand();
 
 		baralhoJ1 = new Deck(1);
 		baralhoJ2 = new Deck(2);
@@ -302,8 +302,22 @@ public class Game {
 			}
 		}
 	}
+	
+	public void getHandDetails(String player){
+		GameEvent gameEvent = null;
+		gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.SEEDETAILS, player);
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
+	}
 
-
+	public void getFieldDetails(String player){
+		GameEvent gameEvent = null;
+		gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.SEEFIELD, player);
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
+	}
 
 	public void addHand(Deck c) {
 		GameEvent gameEvent = null;

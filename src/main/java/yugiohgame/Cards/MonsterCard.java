@@ -35,4 +35,9 @@ public class MonsterCard extends Card {
     public void addAtkPoints(int addModifier) {
         this.atkPoints += addModifier;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+" com "+atkPoints+" de ataque\n";
+    }
 }

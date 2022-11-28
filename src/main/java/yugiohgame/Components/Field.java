@@ -154,4 +154,12 @@ public class Field {
 	}
 
 	public List<GameListener> getObservers(){ return observers; }
+
+	public String toString(){
+		String text = "";
+		for(Card c:cartas){
+			text+= c.toString();
+		}
+		return text;
+	}
 }

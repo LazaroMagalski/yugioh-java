@@ -3,14 +3,12 @@ package yugiohgame;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import yugiohgame.Events.GameEvent;
 import yugiohgame.Listeners.GameListener;
@@ -29,8 +27,8 @@ public class GameWindow extends Application implements GameListener {
 	public void start(Stage primaryStage) {
 		Game.getInstance().addGameListener(this);
 	
-		 primaryStage.setWidth(1200);
-		 primaryStage.setHeight(650);
+		//  primaryStage.setWidth(1200);
+		//  primaryStage.setHeight(650);
 
 		primaryStage.setTitle("Batalha de Cartas");
 
@@ -69,9 +67,24 @@ public class GameWindow extends Application implements GameListener {
 		PlacarView placar = new PlacarView();
 		grid.add(placar, 0, 2);
 
+		Button butInfo = new Button("See Infos");
+		grid.add(butInfo, 2, 0);
+		butInfo.setOnAction(e -> Game.getInstance().getHandDetails("1"));
+
+		Button butInfo2 = new Button("See Infos");
+		grid.add(butInfo2, 2, 6);
+		butInfo2.setOnAction(e -> Game.getInstance().getHandDetails("2"));
+		
+		Button btnField1 = new Button("See Infos");
+		grid.add(btnField1, 2, 2);
+		btnField1.setOnAction(e -> Game.getInstance().getFieldDetails("1"));
+
+		Button btnField2 = new Button("See Infos");
+		grid.add(btnField2, 2, 4);
+		btnField2.setOnAction(e -> Game.getInstance().getFieldDetails("2"));
 
 		Button butClean = new Button("Finalizar Turno");
-		grid.add(butClean, 2, 2);
+		grid.add(butClean, 2, 3);
 		butClean.setOnAction(e -> Game.getInstance().nextPlayer());
 
 		FieldView fieldSpell2 = new FieldView(2, FieldView.CardType.SPELLCARD);
@@ -130,6 +143,44 @@ public class GameWindow extends Application implements GameListener {
 				alert.setTitle("Alerta");
 				alert.setHeaderText(null);
 				alert.setContentText(eg.getArg());
+				alert.showAndWait();
+				break;
+			case SEEDETAILS:
+				String texto = "";
+				switch(eg.getArg()) {
+					case "1":
+						texto = Game.getInstance().getHandJ1().toString();
+						break;
+					case "2":
+						texto = Game.getInstance().getHandJ2().toString();
+						break;
+					default:
+						break;
+				}
+				
+				alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("SeeDetails");
+				alert.setHeaderText(null);
+				alert.setContentText(texto);
+				alert.showAndWait();
+				break;
+			case SEEFIELD:
+				String details = "";
+				switch(eg.getArg()) {
+					case "1":
+						details = Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD).toString();
+						break;
+					case "2":
+						details = Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD).toString();
+						break;
+					default:
+						break;
+				}
+				
+				alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("SeeDetails");
+				alert.setHeaderText(null);
+				alert.setContentText(details);
 				alert.showAndWait();
 				break;
 			case REMOVESEL:

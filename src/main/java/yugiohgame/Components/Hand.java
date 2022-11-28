@@ -17,7 +17,7 @@ public class Hand {
 	private List<GameListener> observers;
 	private boolean canSummon;
 	
-	public Hand(int nroJogador) {
+	public Hand() {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
 		this.canSummon = true;
@@ -69,6 +69,14 @@ public class Hand {
 
 	public void addGameListener(GameListener listener) {
 		observers.add(listener);
+	}
+
+	public String toString(){
+		String text = "";
+		for(Card c:cartas){
+			text+= c.toString();
+		}
+		return text;
 	}
 
 }
