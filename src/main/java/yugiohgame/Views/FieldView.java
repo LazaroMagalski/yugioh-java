@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import yugiohgame.Game;
 import yugiohgame.Cards.Card;
-import yugiohgame.Cards.SpellCard;
 import yugiohgame.Components.Field;
 import yugiohgame.Events.CardViewEvent;
 import yugiohgame.Events.GameEvent;

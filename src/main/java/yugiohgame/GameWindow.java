@@ -27,7 +27,6 @@ public class GameWindow extends Application implements GameListener {
 	public void start(Stage primaryStage) {
 		Game.getInstance().addGameListener(this);
 	
-
 		//  primaryStage.setWidth(1200);
 		//  primaryStage.setHeight(650);
 

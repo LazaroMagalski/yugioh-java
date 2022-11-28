@@ -17,7 +17,6 @@ public class Hand {
 	private List<GameListener> observers;
 	private boolean canSummon;
 	
-
 	public Hand() {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
@@ -79,4 +78,5 @@ public class Hand {
 		}
 		return text;
 	}
+
 }
