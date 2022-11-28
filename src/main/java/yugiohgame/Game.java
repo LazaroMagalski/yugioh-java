@@ -8,7 +8,9 @@ import javax.swing.JOptionPane;
 import yugiohgame.Views.FieldView.CardType;
 import yugiohgame.Cards.Card;
 import yugiohgame.Cards.MonsterCard;
+
 import yugiohgame.Cards.TrapCard;
+
 import yugiohgame.Components.Deck;
 import yugiohgame.Components.Field;
 import yugiohgame.Components.Hand;
@@ -25,8 +27,10 @@ public class Game {
 	private int player;
 	private int rodada;
 	private List<GameListener> observers;
+
 	private MonsterCard mc1;
 	private MonsterCard mc2;
+
 
 
 	public static Game getInstance() {
@@ -43,8 +47,8 @@ public class Game {
 		spellJ2 = new Field();
 		monsterJ2 = new Field();
 
-		handJ1 = new Hand(1);
-		handJ2 = new Hand(2);
+		handJ1 = new Hand();
+		handJ2 = new Hand();
 
 		baralhoJ1 = new Deck(1);
 		baralhoJ2 = new Deck(2);
@@ -68,6 +72,7 @@ public class Game {
 	public void setMC2(MonsterCard mc2){
 		this.mc2 = mc2;
 	}
+
 	public int nextPlayer() {
 		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.BARALHO, GameEvent.Action.PLAYERCHANGE, null);
 
@@ -182,7 +187,9 @@ public class Game {
 		GameEvent gameEvent = null;
 		MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
 		MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
+
 		Boolean negateAttack = false;
+
 		if (rodada == 1){
 			for (var observer : observers) {
 				observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "NÃO É POSSÍVEL REALIZAR ATAQUES NA PRIMEIRA RODADA"));
@@ -211,6 +218,7 @@ public class Game {
 						}
 						return;
 					}else if (monster1.canAttack()) {
+
 						setMC1(monster1);
 						if(spellJ2.getNumberOfCards() > 0){
 							int opc = JOptionPane.showConfirmDialog(null,"Acionar Trap", "Trap", JOptionPane.YES_NO_OPTION);
@@ -228,6 +236,11 @@ public class Game {
 								spellJ2.removeSel();
 								if (negateAttack) { return; }
 								gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+
+						if(spellJ2.getNumberOfCards() > 0){
+							int opc = JOptionPane.showConfirmDialog(null,"Acionar Trap", "Trap", JOptionPane.YES_NO_OPTION);
+							if(opc == 0){
+								String trapnum = JOptionPane.showInputDialog("Qual trap acionar ?");
 							}else{
 								break;
 							}
@@ -277,7 +290,9 @@ public class Game {
 						}
 						return;
 					}else if(monster2.canAttack()) {
+
 						setMC2(monster2);
+
 						if(spellJ1.getNumberOfCards() > 0){
 							int opc = JOptionPane.showConfirmDialog(null,"Acionar Trap", "Trap", JOptionPane.YES_NO_OPTION);
 							if(opc == 0){
@@ -294,6 +309,10 @@ public class Game {
 									spellJ1.removeSel();
 									if (negateAttack) { return; }
 									gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+									spellJ1.getCards().get(0);
+								}else{
+									String trapnum = JOptionPane.showInputDialog("Qual trap acionar ?");
+								}
 							}else{
 								break;
 							}
@@ -340,7 +359,42 @@ public class Game {
 		}
 	}
 
+	public void addHand(Deck c) {
+		GameEvent gameEvent = null;
+		if (c == baralhoJ1) {
+			if (handJ1.getNumberOfCards() < 7){
+				handJ1.addCardHand(c, 1);
+				gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "1");
+			}else{
+				return;
+			}
+		}
+		if (c == baralhoJ2) {
+			if (handJ2.getNumberOfCards() < 7){
+				handJ2.addCardHand(c, 1);
+				gameEvent = new GameEvent(this, GameEvent.Target.HAND, GameEvent.Action.DRAWCARD, "2");
+			}else{
+				return;
+			}
+		}
+		
 
+	
+	public void getHandDetails(String player){
+		GameEvent gameEvent = null;
+		gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.SEEDETAILS, player);
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
+	}
+
+	public void getFieldDetails(String player){
+		GameEvent gameEvent = null;
+		gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.SEEFIELD, player);
+		for (var observer : observers) {
+			observer.notify(gameEvent);
+		}
+	}
 
 	public void addHand(Deck c) {
 		GameEvent gameEvent = null;

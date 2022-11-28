@@ -15,4 +15,8 @@ public class SpellCard extends Card {
 
         public int getModifier() { return modifier; }
 
+        @Override
+        public String toString() {
+            return super.toString()+" "+effect+" "+modifier+"\n";
+        }
 }

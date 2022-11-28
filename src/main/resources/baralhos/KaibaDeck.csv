@@ -30,17 +30,5 @@ SpellCard,Invigoration,Increase Attack points by,400
 SpellCard,Sogen,Increase Attack points by,200
 SpellCard,Ookazi,Reduce opponent's LP by,800
 SpellCard,Fissure,Destroy the 1 face-up monster your opponent controls that has the lowest ATK,0
-TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
-TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
-TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
-TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
-TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
-TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
-TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
-TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
-TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
-TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
-TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
-TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
-TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
-TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
+TrapCard,Draining Shield,Negate the attack of 1 of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent Summons a monster with 1000 or more ATK destroy the monster,1000

@@ -15,6 +15,7 @@ public class MonsterCard extends Card {
     public boolean canAttack() {
         return canAttack;
     }
+
     public void alterAtkPoints(int atkPoints){
         this.atkPoints = atkPoints;
     }
@@ -40,9 +41,7 @@ public class MonsterCard extends Card {
     }
 
     @Override
-    public String toString() {
-        return super.toString()+" "+"MonsterCard [canAttack=" + canAttack + ", atkPoints=" + atkPoints + ", defPoints=" + defPoints
-                + ", level=" + level + "]";
+    public String toString(){
+        return super.toString()+" com "+atkPoints+" de ataque\n";
     }
-    
 }

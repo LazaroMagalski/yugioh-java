@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+
 import yugiohgame.Game;
 import yugiohgame.Cards.Card;
 import yugiohgame.Cards.MonsterCard;
@@ -15,6 +16,9 @@ import yugiohgame.Events.GameEvent;
 import yugiohgame.Listeners.GameListener;
 import yugiohgame.Views.FieldView;
 import yugiohgame.Views.FieldView.CardType;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
+import yugiohgame.Views.FieldView;
 
 public class Field {
 	public static final int NCARDS = 1;
@@ -115,6 +119,7 @@ public class Field {
 		}
 		return negateAttack;
 	}
+
 	public void activateEffect(String effect, Card card, int jogador) {
 		System.out.println("Effect Field"+effect);
 		GameEvent gameEvent= null;
@@ -200,4 +205,11 @@ public class Field {
 	}
 
 	public List<GameListener> getObservers(){ return observers; }
+	public String toString(){
+		String text = "";
+		for(Card c:cartas){
+			text+= c.toString();
+		}
+		return text;
+	}
 }

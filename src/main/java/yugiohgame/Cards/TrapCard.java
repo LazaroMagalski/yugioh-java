@@ -14,4 +14,9 @@ public class TrapCard extends Card {
         public int getModifier() {
             return modifier;
         }
+
+        @Override
+        public String toString() {
+            return super.toString()+" "+effect+"\n";
+        }
 }

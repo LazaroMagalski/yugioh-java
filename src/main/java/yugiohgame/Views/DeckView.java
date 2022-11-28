@@ -77,6 +77,7 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 		return jogador;
 	}
 
+
 	@Override
 	public void notify(GameEvent event) {
 		if (event.getTarget() != GameEvent.Target.BARALHO) {
