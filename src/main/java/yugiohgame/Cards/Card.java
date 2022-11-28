@@ -42,7 +42,7 @@ public class Card {
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		pcs.removePropertyChangeListener(listener);
 	}
-
+  
 	public String toString(){
 		return "Carta "+id;
 	}

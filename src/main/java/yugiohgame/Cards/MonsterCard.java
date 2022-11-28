@@ -16,6 +16,10 @@ public class MonsterCard extends Card {
         return canAttack;
     }
 
+    public void alterAtkPoints(int atkPoints){
+        this.atkPoints = atkPoints;
+    }
+
     public int getAtkPoints() {
         return atkPoints;
     }
