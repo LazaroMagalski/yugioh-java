@@ -3,6 +3,8 @@ package yugiohgame;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import yugiohgame.Views.FieldView.CardType;
 import yugiohgame.Cards.Card;
 import yugiohgame.Cards.MonsterCard;
@@ -194,18 +196,27 @@ public class Game {
 						}
 						return;
 					}else if (monster1.canAttack()) {
-						if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
-							ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
-							monsterJ2.removeSel();
-							monster1.changePosition();
-							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-						} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
-							ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
-							monsterJ1.removeSel();
-							monster1.changePosition();
-							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-						} else{
-							gameEvent = null;
+						if(spellJ2.getNumberOfCards() > 0){
+							int opc = JOptionPane.showConfirmDialog(null,"Acionar Trap", "Trap", JOptionPane.YES_NO_OPTION);
+							if(opc == 0){
+								String trapnum = JOptionPane.showInputDialog("Qual trap acionar ?");
+							}else{
+								break;
+							}
+						}else{
+							if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
+								ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
+								monsterJ2.removeSel();
+								monster1.changePosition();
+								gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+							} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
+								ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
+								monsterJ1.removeSel();
+								monster1.changePosition();
+								gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+							} else{
+								gameEvent = null;
+							}
 						}
 					}else{
 						for (var observer : observers) {
@@ -238,18 +249,31 @@ public class Game {
 						}
 						return;
 					}else if(monster2.canAttack()) {
-						if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
-							ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
-							monsterJ2.removeSel();
-							monster2.changePosition();
-							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-						} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
-							ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
-							monsterJ1.removeSel();
-							monster2.changePosition();
-							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-						} else{
-							gameEvent = null;
+						if(spellJ1.getNumberOfCards() > 0){
+							int opc = JOptionPane.showConfirmDialog(null,"Acionar Trap", "Trap", JOptionPane.YES_NO_OPTION);
+							if(opc == 0){
+								if(spellJ1.getNumberOfCards() == 1){
+									spellJ1.getCards().get(0);
+								}else{
+									String trapnum = JOptionPane.showInputDialog("Qual trap acionar ?");
+								}
+							}else{
+								break;
+							}
+						}else{
+							if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
+								ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
+								monsterJ2.removeSel();
+								monster2.changePosition();
+								gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+							} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
+								ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
+								monsterJ1.removeSel();
+								monster2.changePosition();
+								gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+							} else{
+								gameEvent = null;
+							}
 						}
 					}else{
 						for (var observer : observers) {
