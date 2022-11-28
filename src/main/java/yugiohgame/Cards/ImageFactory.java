@@ -19,18 +19,13 @@ public class ImageFactory {
 	}
 
 	private String id2File(String imgId) {
-		switch (imgId) {
-		case "imgBck":
-			return ("/imagens/back_yugi.jpg");
-		default:
-			return ("/imagens/"+imgId+".jpg");
-		}
+		if (imgId.equals("imgBck")) { return ("/imagens/back_yugi.jpg"); }
+		return ("/imagens/"+imgId+".jpg");
 	}
 
 	public ImageView createImage(String imgId) {
 		Image img = images.get(imgId);
 		if (img == null) {
-//			img = new Image(id2File(imgId));
 			img = new Image(getClass().getResourceAsStream(id2File(imgId)));
 			images.put(imgId, img);
 		}
