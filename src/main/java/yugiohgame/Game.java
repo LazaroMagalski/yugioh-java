@@ -20,7 +20,7 @@ public class Game {
 	private Hand handJ1, handJ2;
 	private Deck baralhoJ1, baralhoJ2;
 	private int player;
-	private int jogadas;
+	private int rodada;
 	private List<GameListener> observers;
 
 
@@ -47,7 +47,7 @@ public class Game {
 		handJ2.addCardHand(baralhoJ2, 5);
 
 		player = 1;
-		jogadas = Field.NCARDS;
+		rodada = 1;
 		observers = new LinkedList<>();
 	}
 
@@ -55,6 +55,7 @@ public class Game {
 	public int nextPlayer() {
 		GameEvent gameEvent = new GameEvent(this, GameEvent.Target.BARALHO, GameEvent.Action.PLAYERCHANGE, null);
 
+		rodada++;
 		player++;
 		if (player == 3) {
 			player = 1;
@@ -81,7 +82,8 @@ public class Game {
 			MonsterCard m = (MonsterCard) c;
 			m.setAttack(true);
 		}
-
+		handJ1.setCondition(true);
+		handJ2.setCondition(true);
 		for (var observer : observers) {
 			observer.notify(gameEvent);
 		}
@@ -164,7 +166,12 @@ public class Game {
 		GameEvent gameEvent = null;
 		MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
 		MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
-
+		if (rodada == 1){
+			for (var observer : observers) {
+				observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "NÃO É POSSÍVEL REALIZAR ATAQUES NA PRIMEIRA RODADA"));
+			}
+			return;
+		}
 		switch (player){
 			case 1:
 				if (field == monsterJ1){
@@ -234,10 +241,12 @@ public class Game {
 						if (monster1.getAtkPoints() > monster2.getAtkPoints()) {
 							ptsJ2 -= monster1.getAtkPoints() - monster2.getAtkPoints();
 							monsterJ2.removeSel();
+							monster2.changePosition();
 							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 						} else if (monster1.getAtkPoints() < monster2.getAtkPoints()) {
 							ptsJ1 -= monster2.getAtkPoints() - monster1.getAtkPoints();
 							monsterJ1.removeSel();
+							monster2.changePosition();
 							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 						} else{
 							gameEvent = null;
@@ -270,24 +279,6 @@ public class Game {
 		}
 	}
 
-
-	// Acionada pelo botao de limpar
-	public void removeSelected() {
-		GameEvent gameEvent = null;
-		if (player != 3) {
-			return;
-		}
-		jogadas--;
-		if (jogadas == 0) {
-			gameEvent = new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.ENDGAME, "");
-			for (var observer : observers) {
-				observer.notify(gameEvent);
-			}
-		}
-		spellJ1.removeSel();
-		monsterJ1.removeSel();
-		nextPlayer();
-	}
 
 
 	public void addHand(Deck c) {

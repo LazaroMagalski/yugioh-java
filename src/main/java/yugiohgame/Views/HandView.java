@@ -3,6 +3,8 @@ package yugiohgame.Views;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -29,6 +31,7 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		super(4);
 		this.setAlignment(Pos.CENTER);
 		Game.getInstance().addGameListener(this);
+
 		jogador = nroJog;
 		selectedCard = null;
 
@@ -93,12 +96,21 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 
 	@Override
 	public void handle(CardViewEvent event) {
-		CardView cv = event.getCardView();
 		int j = getJogador();
-		int numberCards = 0;
+		if (Game.getInstance().getPlayer() != j) { return; }
+
+		CardView cv = event.getCardView();
 		selectedCard = cv.getCard();
+
+		if (selectedCard instanceof MonsterCard && Boolean.TRUE.equals(!cHand.getCondition())) { 
+			JOptionPane.showMessageDialog(null, "VOCÊ JÁ INVOCOU UM MONSTRO NESSA RODADA");
+			return; 
+		}
+
+		int numberCards = 0;
 		CardType cardType = null;
 		Field field = null;
+		
 		if (selectedCard instanceof MonsterCard) {
 					if(j == 1) numberCards = (Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD).getNumberOfCards());
 					if(j == 2) numberCards = (Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD).getNumberOfCards());
@@ -113,7 +125,7 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 		if (numberCards < 5) {
 			cHand.setSelectedCard(selectedCard);
 			Game.getInstance().addField(selectedCard, j, cardType);
-
+			if (selectedCard instanceof MonsterCard) { cHand.setCondition(false); }
 			if (selectedCard instanceof SpellCard){
 				SpellCard c = (SpellCard) selectedCard;
 				String effect = c.getEffect();

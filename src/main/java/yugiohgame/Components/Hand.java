@@ -15,14 +15,18 @@ public class Hand {
 	private List<Card> cartas;
 	private Card selected;
 	private List<GameListener> observers;
-	private Deck baralho;
+	private boolean canSummon;
 	
 	public Hand(int nroJogador) {
 		cartas = new ArrayList<>(NCARDS);
 		selected = null;
-		
+		this.canSummon = true;
 		observers = new LinkedList<>();
 	}
+
+	public Boolean getCondition() { return this.canSummon; }
+
+	public void setCondition(Boolean summon) { this.canSummon = summon; }
 
 	public List<Card> getCards() {
 		return Collections.unmodifiableList(cartas);
