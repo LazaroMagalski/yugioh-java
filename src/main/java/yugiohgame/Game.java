@@ -182,6 +182,7 @@ public class Game {
 		GameEvent gameEvent = null;
 		MonsterCard monster1 = (MonsterCard) monsterJ1.getSelectedCard();
 		MonsterCard monster2 = (MonsterCard) monsterJ2.getSelectedCard();
+		Boolean negateAttack = false;
 		if (rodada == 1){
 			for (var observer : observers) {
 				observer.notify(new GameEvent(this, GameEvent.Target.GWIN, GameEvent.Action.INVPLAY, "NÃO É POSSÍVEL REALIZAR ATAQUES NA PRIMEIRA RODADA"));
@@ -216,15 +217,16 @@ public class Game {
 							if(opc == 0){
 								if(spellJ2.getNumberOfCards() == 0){
 									TrapCard t = (TrapCard) spellJ2.getCards().get(0);
-									spellJ2.activateTrap(t.getEffect(), t, 2);
+									negateAttack = spellJ2.activateTrap(t.getEffect(), t, 2);
 									spellJ2.setSelectedCard(t);
 								}else{
 									int trapNum = Integer.parseInt(JOptionPane.showInputDialog("Qual trap adicionar? "));
 									TrapCard t = (TrapCard) spellJ2.getCards().get(trapNum);
-									spellJ2.activateTrap(t.getEffect(), t, 2);
+									negateAttack = spellJ2.activateTrap(t.getEffect(), t, 2);
 									spellJ2.setSelectedCard(t);
 								}
 								spellJ2.removeSel();
+								if (negateAttack) { return; }
 								gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 							}else{
 								break;
@@ -281,15 +283,16 @@ public class Game {
 							if(opc == 0){
 								if(spellJ1.getNumberOfCards() == 1){
 									TrapCard t = (TrapCard) spellJ1.getCards().get(0);
-									spellJ1.activateTrap(t.getEffect(), t, 1);
+									negateAttack = spellJ1.activateTrap(t.getEffect(), t, 1);
 									spellJ1.setSelectedCard(t);
 								}else{
 									int trapNum = Integer.parseInt(JOptionPane.showInputDialog("Qual trap acionar ?"));
 									TrapCard t = (TrapCard) spellJ1.getCards().get(trapNum);
-									spellJ1.activateTrap(t.getEffect(), t, 1);
+									negateAttack = spellJ1.activateTrap(t.getEffect(), t, 1);
 									spellJ1.setSelectedCard(t);
 								}
 									spellJ1.removeSel();
+									if (negateAttack) { return; }
 									gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 							}else{
 								break;

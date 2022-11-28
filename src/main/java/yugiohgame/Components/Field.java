@@ -71,8 +71,9 @@ public class Field {
 		cartas.add(c);
 	}
 
-	public void activateTrap(String effect, Card card, int jogador) {
+	public Boolean activateTrap(String effect, Card card, int jogador) {
 		System.out.println("Effect Field"+effect);
+		Boolean negateAttack = false;
 		GameEvent gameEvent= null;
 		Field field = null;
 		TrapCard t = (TrapCard) card;
@@ -91,25 +92,28 @@ public class Field {
 					Game.getInstance().addLP(atk, 2);
 				
 				}
+				negateAttack = true;
 				break;
 			case "When your opponent attack with a monster with 1000 or more ATK destroy the monster":
-			MonsterCard auxMonster = null;
-			if (jogador==1){ 
-				field = Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD); 
-				auxMonster = Game.getInstance().getMC2();
-			} else { 
-				field = Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD); 
-				auxMonster = Game.getInstance().getMC1();
-			} 
+				MonsterCard auxMonster = null;
+				if (jogador==1){ 
+					field = Game.getInstance().getFieldJ2(FieldView.CardType.MONSTERCARD); 
+					auxMonster = Game.getInstance().getMC2();
+				} else { 
+					field = Game.getInstance().getFieldJ1(FieldView.CardType.MONSTERCARD); 
+					auxMonster = Game.getInstance().getMC1();
+				} 
 
-			System.out.println(auxMonster.toString());
-			if(auxMonster.getAtkPoints() >= 1000){
-				field.setSelectedCard(auxMonster);
-				field.removeSel();
-				gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
-			}
+				System.out.println(auxMonster.toString());
+				if(auxMonster.getAtkPoints() >= 1000){
+					field.setSelectedCard(auxMonster);
+					field.removeSel();
+					gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
+				}
+			negateAttack = true;
 			break;
 		}
+		return negateAttack;
 	}
 	public void activateEffect(String effect, Card card, int jogador) {
 		System.out.println("Effect Field"+effect);

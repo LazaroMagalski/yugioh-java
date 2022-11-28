@@ -124,6 +124,7 @@ public class HandView extends HBox implements CardViewListener, GameListener {
 
 		if (numberCards < 5) {
 			cHand.setSelectedCard(selectedCard);
+			if (selectedCard instanceof TrapCard) { selectedCard.flip(); }
 			Game.getInstance().addField(selectedCard, j, cardType);
 			if (selectedCard instanceof MonsterCard) { cHand.setCondition(false); }
 			if (selectedCard instanceof SpellCard){
