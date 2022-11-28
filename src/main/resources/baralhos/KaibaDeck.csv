@@ -1,1 +1,46 @@
-Monster,Level,Attack,DefenseBlue Eyes White Dragon,8,3000,2500Hitotsu-Me Giant,4,1200,1000La Jinn the Mystical Genie of the Lamp,4,1800,1000Battle Ox,4,1700,1000Judge Man,6,2200,1500Kojikocy,4,1500,1200Ogre of the Black Shadow,4,1200,1400Rogue Doll,4,1600,1000Uraby,4,1500,800Koumori Dragon,4,1500,1200Gyakutenno Megami,6,1800,2000Mystic Horseman,4,1300,1550Terra the Terrible,4,1200,1300Dark Titan of Terror,4,1300,1100Dark Assailant,4,1200,1200Ryu Kishin Powered,4,1600,1200Mystic Clown,4,1500,1000Swordstalker,6,2000,1600Unknown Warrior of Fiend,3,1000,500Destroyer Golem,4,1500,1000Master and Expert,4,1200,1000Ryu Kishin,3,1000,500Pale Beast,4,1500,1200D Human,4,1300,1100Skull Red Bird,4,1550,1200
+CardType,Name,Level,Attack,Defense
+MonsterCard,Blue Eyes White Dragon,8,3000,2500
+MonsterCard,Hitotsu-Me Giant,4,1200,1000
+MonsterCard,La Jinn the Mystical Genie of the Lamp,4,1800,1000
+MonsterCard,Battle Ox,4,1700,1000
+MonsterCard,Judge Man,6,2200,1500
+MonsterCard,Kojikocy,4,1500,1200
+MonsterCard,Ogre of the Black Shadow,4,1200,1400
+MonsterCard,Rogue Doll,4,1600,1000
+MonsterCard,Uraby,4,1500,800
+MonsterCard,Koumori Dragon,4,1500,1200
+MonsterCard,Gyakutenno Megami,6,1800,2000
+MonsterCard,Mystic Horseman,4,1300,1550
+MonsterCard,Terra the Terrible,4,1200,1300
+MonsterCard,Dark Titan of Terror,4,1300,1100
+MonsterCard,Dark Assailant,4,1200,1200
+MonsterCard,Ryu Kishin Powered,4,1600,1200
+MonsterCard,Mystic Clown,4,1500,1000
+MonsterCard,Swordstalker,6,2000,1600
+MonsterCard,Unknown Warrior of Fiend,3,1000,500
+MonsterCard,Destroyer Golem,4,1500,1000
+MonsterCard,Master and Expert,4,1200,1000
+MonsterCard,Ryu Kishin,3,1000,500
+MonsterCard,Pale Beast,4,1500,1200
+MonsterCard,D Human,4,1300,1100
+MonsterCard,Skull Red Bird,4,1550,1200
+SpellCard,Dark Hole,Destroy all monsters,0
+SpellCard,Dark Energy,Increase Attack points by,300
+SpellCard,Invigoration,Increase Attack points by,400
+SpellCard,Sogen,Increase Attack points by,200
+SpellCard,Ookazi,Reduce opponent's LP by,800
+SpellCard,Fissure,Destroy the 1 face-up monster your opponent controls that has the lowest ATK,0
+TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
+TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
+TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
+TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
+TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
+TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000
+TrapCard,Draining Shield,Negate the attack of your opponent monsters and gain Life Points equal to the ATK of the monster,0
+TrapCard,Trap Hole,When your opponent attack with a monster with 1000 or more ATK destroy the monster,1000

@@ -12,6 +12,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import yugiohgame.Events.GameEvent;
+import yugiohgame.Listeners.GameListener;
+import yugiohgame.Views.DeckView;
+import yugiohgame.Views.FieldView;
+import yugiohgame.Views.HandView;
+import yugiohgame.Views.PlacarView;
 
 public class GameWindow extends Application implements GameListener {
 
@@ -22,13 +28,9 @@ public class GameWindow extends Application implements GameListener {
 	@Override
 	public void start(Stage primaryStage) {
 		Game.getInstance().addGameListener(this);
-
-		Screen screen = Screen.getPrimary();
-		Rectangle2D bounds = screen.getVisualBounds();
-
-		primaryStage.setWidth(1200);
-		primaryStage.setHeight(650);
-
+	
+		 primaryStage.setWidth(1200);
+		 primaryStage.setHeight(650);
 
 		primaryStage.setTitle("Batalha de Cartas");
 
@@ -38,54 +40,65 @@ public class GameWindow extends Application implements GameListener {
 		grid.setVgap(20);
 		grid.setPadding(new Insets(25, 25, 25, 25));
 
-		HandView deckJ1 = new HandView(1);
-		BaralhoView baralhoJ1 = new BaralhoView(1);
-		DeckView deckJ3 = new DeckView(1);
-		DeckView deckJ5 = new DeckView(5);
-		ScrollPane sd1 = new ScrollPane();
-		ScrollPane sd3 = new ScrollPane();
-		ScrollPane sd5 = new ScrollPane();
-		ScrollPane sd8 = new ScrollPane();
-		sd1.setPrefSize(600, 128);
-		sd1.setContent(deckJ1);
-		grid.add(sd1, 1, 0);
-		sd3.setPrefSize(600, 128);
-		sd3.setContent(deckJ3);
-		grid.add(sd3, 1, 1);
-		sd5.setPrefSize(600, 128);
-		sd5.setContent(deckJ5);
-		grid.add(sd5, 1, 2);
-		sd8.setPrefSize(128, 128);
-		sd8.setContent(baralhoJ1);
-		grid.add(sd8, 0, 0);
+		HandView handJ1 = new HandView(1);
+		DeckView baralhoJ1 = new DeckView(1);
+		FieldView fieldSpell1 = new FieldView(1,FieldView.CardType.SPELLCARD);
+		FieldView fieldMonster1 = new FieldView(1, FieldView.CardType.MONSTERCARD);
+
+		ScrollPane sdHand1 = new ScrollPane();
+		ScrollPane sdSpell1 = new ScrollPane();
+		ScrollPane sdMonster1 = new ScrollPane();
+		ScrollPane sdBaralho1 = new ScrollPane();
+
+		sdHand1.setPrefSize(600, 128);
+		sdHand1.setContent(handJ1);
+		grid.add(sdHand1, 1, 0);
+
+		sdSpell1.setPrefSize(600, 128);
+		sdSpell1.setContent(fieldSpell1);
+		grid.add(sdSpell1, 1, 1);
+
+		sdMonster1.setPrefSize(600, 128);
+		sdMonster1.setContent(fieldMonster1);
+		grid.add(sdMonster1, 1, 2);
+
+		sdBaralho1.setPrefSize(128, 128);
+		sdBaralho1.setContent(baralhoJ1);
+		grid.add(sdBaralho1, 0, 0);
 
 		PlacarView placar = new PlacarView();
 		grid.add(placar, 0, 2);
 
-		Button butClean = new Button("Clean");
-		grid.add(butClean, 2, 2);
-		butClean.setOnAction(e -> Game.getInstance().removeSelected());
 
-		DeckView deckJ2 = new DeckView(2);
-		DeckView deckJ4 = new DeckView(4);
-		HandView deckJ6 = new HandView(2);
-		BaralhoView baralhoJ2 = new BaralhoView(2);
-		ScrollPane sd2 = new ScrollPane();
-		ScrollPane sd4 = new ScrollPane();
-		ScrollPane sd6 = new ScrollPane();
-		ScrollPane sd9 = new ScrollPane();
-		sd2.setPrefSize(600, 128);
-		sd2.setContent(deckJ2);
-		grid.add(sd2, 1, 4);
-		sd4.setPrefSize(600, 128);
-		sd4.setContent(deckJ4);
-		grid.add(sd4, 1, 5);
-		sd6.setPrefSize(600, 128);
-		sd6.setContent(deckJ6);
-		grid.add(sd6, 1, 6);
-		sd9.setPrefSize(128, 128);
-		sd9.setContent(baralhoJ2);
-		grid.add(sd9, 0, 6);
+		Button butClean = new Button("Finalizar Turno");
+		grid.add(butClean, 2, 2);
+		butClean.setOnAction(e -> Game.getInstance().nextPlayer());
+
+		FieldView fieldSpell2 = new FieldView(2, FieldView.CardType.SPELLCARD);
+		FieldView fieldMonster2 = new FieldView(2, FieldView.CardType.MONSTERCARD);
+		HandView handJ2 = new HandView(2);
+		DeckView baralhoJ2 = new DeckView(2);
+
+		ScrollPane sdSpell2 = new ScrollPane();
+		ScrollPane sdField2 = new ScrollPane();
+		ScrollPane sdHand2 = new ScrollPane();
+		ScrollPane sdBaralho2 = new ScrollPane();
+
+		sdField2.setPrefSize(600, 128);
+		sdField2.setContent(fieldMonster2);
+		grid.add(sdField2, 1, 4);
+
+		sdSpell2.setPrefSize(600, 128);
+		sdSpell2.setContent(fieldSpell2);
+		grid.add(sdSpell2, 1, 5);
+
+		sdHand2.setPrefSize(600, 128);
+		sdHand2.setContent(handJ2);
+		grid.add(sdHand2, 1, 6);
+
+		sdBaralho2.setPrefSize(128, 128);
+		sdBaralho2.setContent(baralhoJ2);
+		grid.add(sdBaralho2, 0, 6);
 
 		Scene scene = new Scene(grid);
 
@@ -99,23 +112,9 @@ public class GameWindow extends Application implements GameListener {
 		if (eg == null) return;
 		if (eg.getTarget() == GameEvent.Target.GWIN) {
 			switch (eg.getAction()) {
-			case INVPLAY:
-				alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Atenção !!");
-				alert.setHeaderText("Jogada inválida!!");
-				alert.setContentText("Era a vez do jogador " + eg.getArg());
-				alert.showAndWait();
-				break;
-			case MUSTCLEAN:
-				alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Atenção !!");
-				alert.setHeaderText(null);
-				alert.setContentText("Utilize o botao \"Clean\"");
-				alert.showAndWait();
-				break;
 			case ENDGAME:
 				String text = "Fim de Jogo !!\n";
-				if (Game.getInstance().getPtsJ1() > Game.getInstance().getPtsJ2()) {
+				if (eg.getArg().equals("1")) {
 					text += "O jogador 1 ganhou !! :-)";
 				} else {
 					text += "O jogador 2 ganhou !! :-)";
@@ -126,7 +125,17 @@ public class GameWindow extends Application implements GameListener {
 				alert.setContentText(text);
 				alert.showAndWait();
 				break;
+			case INVPLAY:
+				alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Alerta");
+				alert.setHeaderText(null);
+				alert.setContentText(eg.getArg());
+				alert.showAndWait();
+				break;
 			case REMOVESEL:
+			case SUMMONCARD:
+			case DRAWCARD:
+			default:
 				// Esse evento não vem para cá
 			}
 		}
