@@ -89,7 +89,7 @@ public class DeckView extends HBox implements CardViewListener, GameListener {
 	@Override
 	public void handle(CardViewEvent event) {
 		Deck baralho = getDeck();
-		Game.getInstance().addHand(baralho);
+		// Game.getInstance().addHand(baralho);
 		getTopo();
 	}
 }

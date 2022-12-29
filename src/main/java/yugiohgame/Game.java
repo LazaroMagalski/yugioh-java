@@ -212,15 +212,16 @@ public class Game {
 									}
 									spellJ2.removeSel();
 									if (negateAttack) {
+										monster1.changePosition();
 										return;
 									}
 									gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD,
-											"");
+									"");
 								}
 							}
 							ptsJ2 -= monster1.getAtkPoints();
-							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 							monster1.changePosition();
+							gameEvent = new GameEvent(this, GameEvent.Target.DECK, GameEvent.Action.SUMMONCARD, "");
 						}
 					} else {
 						for (var observer : observers) {
