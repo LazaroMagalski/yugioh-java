@@ -1,6 +1,7 @@
 package yugiohgame.Components;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -32,11 +33,12 @@ public class Deck {
 		String caminhoAtual = "";
 
 		if (nroJogador == 1){
-			caminhoAtual = Paths.get("src\\main\\resources\\baralhos\\KaibaDeck.csv").toAbsolutePath().toString();
+			caminhoAtual = Paths.get("src"+File.separator+"main"+File.separator+"resources"+File.separator+"baralhos"+File.separator+"KaibaDeck.csv").toAbsolutePath().toString();
+		}else if (nroJogador == 2){
+			caminhoAtual = Paths.get("src"+File.separator+"main"+File.separator+"resources"+File.separator+"baralhos"+File.separator+"YugiDeck.csv").toAbsolutePath().toString();
 		}else{
-			caminhoAtual = Paths.get("src\\main\\resources\\baralhos\\YugiDeck.csv").toAbsolutePath().toString();
+			throw new RuntimeException("Player number is invalid!");
 		}
-
         Path caminho = Paths.get(caminhoAtual);
 		try (Scanner sc = new Scanner(Files.newBufferedReader(caminho, Charset.defaultCharset()))) {
 			String lineHeader = sc.nextLine();

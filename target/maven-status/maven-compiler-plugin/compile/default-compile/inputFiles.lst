@@ -1,19 +1,19 @@
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Events\GameEvent.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\Card.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\PlacarView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Components\Hand.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Events\CardViewEvent.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Components\Deck.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Listeners\CardViewListener.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\FieldView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\TrapCard.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\MonsterCard.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\CardView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\DeckView.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\ImageFactory.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Game.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Listeners\GameListener.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\GameWindow.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Components\Field.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Cards\SpellCard.java
-C:\Users\lorra\OneDrive - PUCRS - BR\Faculdade\POO\yugioh-java\src\main\java\yugiohgame\Views\HandView.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Views/HandView.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Listeners/CardViewListener.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Views/DeckView.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/GameWindow.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Views/FieldView.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Views/CardView.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Game.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Listeners/GameListener.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Cards/TrapCard.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Events/GameEvent.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Components/Deck.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Components/Hand.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Views/PlacarView.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Cards/SpellCard.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Events/CardViewEvent.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Cards/Card.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Cards/MonsterCard.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Cards/ImageFactory.java
+/home/lgmarques/Dev/yugioh-java/src/main/java/yugiohgame/Components/Field.java
